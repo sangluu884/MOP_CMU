@@ -14,3 +14,19 @@ D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplicat
 D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Account_Management.GUI_Authority.resources
 D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.GUI_LoginFrm.resources
 D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Category_Management.GUI_Category.resources
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe.config
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.exe
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.pdb
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.pdb
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\bin\Debug\EntityFramework.dll
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\bin\Debug\EntityFramework.xml
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.csprojResolveAssemblyReference.cache
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Account_Management.GUI_Account.resources
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Account_Management.GUI_Authority.resources
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Category_Management.GUI_Category.resources
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Form0.resources
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.GUI_LoginFrm.resources
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.GUI_MainFrm.resources
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Properties.Resources.resources
+F:\Git\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.csproj.GenerateResource.Cache
