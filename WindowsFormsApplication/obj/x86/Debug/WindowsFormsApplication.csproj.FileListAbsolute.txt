@@ -1,0 +1,16 @@
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe.config
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.pdb
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\EntityFramework.dll
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\EntityFramework.xml
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.csprojResolveAssemblyReference.cache
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Form0.resources
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.GUI_MainFrm.resources
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Properties.Resources.resources
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.csproj.GenerateResource.Cache
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.exe
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.pdb
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Account_Management.GUI_Account.resources
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Account_Management.GUI_Authority.resources
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.GUI_LoginFrm.resources
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Category_Management.GUI_Category.resources
