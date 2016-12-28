@@ -262,6 +262,246 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="usp_PriceUpdate" FunctionName="CMART0Model.Store.usp_PriceUpdate" />
+    <FunctionImportMapping FunctionImportName="PROMOTION_SELECT" FunctionName="CMART0Model.Store.PROMOTION_SELECT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.PROMOTION_SELECT_Result">
+          <ScalarProperty Name="PromotionID" ColumnName="PromotionID" />
+          <ScalarProperty Name="PromotionPrice" ColumnName="PromotionPrice" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_CategoryUpdate" FunctionName="CMART0Model.Store.usp_CategoryUpdate" />
+    <FunctionImportMapping FunctionImportName="SP_INSERT_HEADQUATERRECEIPT" FunctionName="CMART0Model.Store.SP_INSERT_HEADQUATERRECEIPT" />
+    <FunctionImportMapping FunctionImportName="SP_UPDATE_HEADQUATERRECEIPT" FunctionName="CMART0Model.Store.SP_UPDATE_HEADQUATERRECEIPT" />
+    <FunctionImportMapping FunctionImportName="usp_HEADQUATERRECEIPTSearch" FunctionName="CMART0Model.Store.usp_HEADQUATERRECEIPTSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.usp_HEADQUATERRECEIPTSearch_Result">
+          <ScalarProperty Name="HeadquaterID" ColumnName="HeadquaterID" />
+          <ScalarProperty Name="ProposeID" ColumnName="ProposeID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_CategoryUpdate2" FunctionName="CMART0Model.Store.usp_CategoryUpdate2" />
+    <FunctionImportMapping FunctionImportName="usp_Bill_Insert_returnid" FunctionName="CMART0Model.Store.usp_Bill_Insert_returnid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.usp_Bill_Insert_returnid_Result">
+          <ScalarProperty Name="BillID" ColumnName="BillID" />
+          <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+          <ScalarProperty Name="POS" ColumnName="POS" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+          <ScalarProperty Name="InputMoney" ColumnName="InputMoney" />
+          <ScalarProperty Name="OutputMoney" ColumnName="OutputMoney" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_BillDetail_Add" FunctionName="CMART0Model.Store.usp_BillDetail_Add" />
+    <FunctionImportMapping FunctionImportName="usp_BillDetail_Delete" FunctionName="CMART0Model.Store.usp_BillDetail_Delete" />
+    <FunctionImportMapping FunctionImportName="usp_PromotionUpdate" FunctionName="CMART0Model.Store.usp_PromotionUpdate" />
+    <FunctionImportMapping FunctionImportName="usp_PromotionUpdateTest" FunctionName="CMART0Model.Store.usp_PromotionUpdateTest" />
+    <FunctionImportMapping FunctionImportName="usp_SupplierSearch" FunctionName="CMART0Model.Store.usp_SupplierSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.usp_SupplierSearch_Result">
+          <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_SupplierUpdate" FunctionName="CMART0Model.Store.usp_SupplierUpdate" />
+    <FunctionImportMapping FunctionImportName="usp_ProposedSearch" FunctionName="CMART0Model.Store.usp_ProposedSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.usp_ProposedSearch_Result">
+          <ScalarProperty Name="ProposeID" ColumnName="ProposeID" />
+          <ScalarProperty Name="ProposeDate" ColumnName="ProposeDate" />
+          <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_ProposedUpdate" FunctionName="CMART0Model.Store.usp_ProposedUpdate" />
+    <FunctionImportMapping FunctionImportName="SP_THONGKEDOANHTHU" FunctionName="CMART0Model.Store.SP_THONGKEDOANHTHU">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.SP_THONGKEDOANHTHU_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_THONGKEDOANHTHU_KTG" FunctionName="CMART0Model.Store.SP_THONGKEDOANHTHU_KTG">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.SP_THONGKEDOANHTHU_KTG_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_THONGKEDOANHTHU_KTG_TOP10" FunctionName="CMART0Model.Store.SP_THONGKEDOANHTHU_KTG_TOP10">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.SP_THONGKEDOANHTHU_KTG_TOP10_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_THONGKEDOANHTHU_KTG_TOP20" FunctionName="CMART0Model.Store.SP_THONGKEDOANHTHU_KTG_TOP20">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.SP_THONGKEDOANHTHU_KTG_TOP20_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_THONGKEDOANHTHU_KTG_TOP5" FunctionName="CMART0Model.Store.SP_THONGKEDOANHTHU_KTG_TOP5">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.SP_THONGKEDOANHTHU_KTG_TOP5_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_THONGKEDOANHTHU_TOP10" FunctionName="CMART0Model.Store.SP_THONGKEDOANHTHU_TOP10">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.SP_THONGKEDOANHTHU_TOP10_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_THONGKEDOANHTHU_TOP20" FunctionName="CMART0Model.Store.SP_THONGKEDOANHTHU_TOP20">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.SP_THONGKEDOANHTHU_TOP20_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_THONGKEDOANHTHU_TOP5" FunctionName="CMART0Model.Store.SP_THONGKEDOANHTHU_TOP5">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.SP_THONGKEDOANHTHU_TOP5_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ProposedDetail_Insert" FunctionName="CMART0Model.Store.sp_ProposedDetail_Insert" />
+    <FunctionImportMapping FunctionImportName="SP_SUMREPORT" FunctionName="CMART0Model.Store.SP_SUMREPORT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.SP_SUMREPORT_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_ProposedDetailSearch" FunctionName="CMART0Model.Store.usp_ProposedDetailSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.usp_ProposedDetailSearch_Result">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProposeID" ColumnName="ProposeID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_ProposedDetailUpdate" FunctionName="CMART0Model.Store.usp_ProposedDetailUpdate" />
+    <FunctionImportMapping FunctionImportName="usp_ProposedDetailDeleteAll" FunctionName="CMART0Model.Store.usp_ProposedDetailDeleteAll" />
+    <FunctionImportMapping FunctionImportName="Headquarter_SelectProduct" FunctionName="CMART0Model.Store.Headquarter_SelectProduct" />
+    <FunctionImportMapping FunctionImportName="sp_BranchOfficeSearch" FunctionName="CMART0Model.Store.sp_BranchOfficeSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.sp_BranchOfficeSearch_Result">
+          <ScalarProperty Name="BranchOfficeID" ColumnName="BranchOfficeID" />
+          <ScalarProperty Name="HeadquaterID" ColumnName="HeadquaterID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_INSERT_HEADQUATERRECEIPTDETAIL" FunctionName="CMART0Model.Store.SP_INSERT_HEADQUATERRECEIPTDETAIL" />
+    <FunctionImportMapping FunctionImportName="SP_LOAD_BRANCHRECEIPTDETAIL" FunctionName="CMART0Model.Store.SP_LOAD_BRANCHRECEIPTDETAIL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.SP_LOAD_BRANCHRECEIPTDETAIL_Result">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_UPDATE_BRANCHRECEIPTDETAIL" FunctionName="CMART0Model.Store.SP_UPDATE_BRANCHRECEIPTDETAIL" />
+    <FunctionImportMapping FunctionImportName="usp_BranchOfficeDetailSearch" FunctionName="CMART0Model.Store.usp_BranchOfficeDetailSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.usp_BranchOfficeDetailSearch_Result">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_UPDATE_HEADQUATERRECEIPTDETAIL" FunctionName="CMART0Model.Store.SP_UPDATE_HEADQUATERRECEIPTDETAIL" />
+    <FunctionImportMapping FunctionImportName="usp_HeadquarterReceiptDetailSearch" FunctionName="CMART0Model.Store.usp_HeadquarterReceiptDetailSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.usp_HeadquarterReceiptDetailSearch_Result">
+          <ScalarProperty Name="HeadquaterID" ColumnName="HeadquaterID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_HeadquarterDetailDeleteAll" FunctionName="CMART0Model.Store.usp_HeadquarterDetailDeleteAll" />
+    <FunctionImportMapping FunctionImportName="SP_PRINT_BRANCHRECEIPTDETAIL" FunctionName="CMART0Model.Store.SP_PRINT_BRANCHRECEIPTDETAIL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.SP_PRINT_BRANCHRECEIPTDETAIL_Result">
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="BranchOfficeID" ColumnName="BranchOfficeID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <EntitySetMapping Name="Accounts">
       <EntityTypeMapping TypeName="CMART0Model.Account">
         <MappingFragment StoreEntitySet="Account">
@@ -335,8 +575,8 @@
         <MappingFragment StoreEntitySet="BranchOfficeReceiptDetail">
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="BranchOfficeID" ColumnName="BranchOfficeID" />
-          <ScalarProperty Name="HeadquaterID" ColumnName="HeadquaterID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -419,7 +659,7 @@
         <MappingFragment StoreEntitySet="ProposeReceiptDetail">
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="ProposeID" ColumnName="ProposeID" />
-          <ScalarProperty Name="ProducID" ColumnName="ProducID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -444,19 +684,52 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="PROMOTION_SELECT" FunctionName="CMART0Model.Store.PROMOTION_SELECT">
+    <FunctionImportMapping FunctionImportName="SP_PRINT_Proposed" FunctionName="CMART0Model.Store.SP_PRINT_Proposed">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="CMART0Model.PROMOTION_SELECT_Result">
-          <ScalarProperty Name="PromotionID" ColumnName="PromotionID" />
-          <ScalarProperty Name="PromotionPrice" ColumnName="PromotionPrice" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="Content" ColumnName="Content" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
+        <ComplexTypeMapping TypeName="CMART0Model.SP_PRINT_Proposed_Result">
+          <ScalarProperty Name="ProposeID" ColumnName="ProposeID" />
+          <ScalarProperty Name="ProposeDate" ColumnName="ProposeDate" />
+          <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="PROMOTION_UPDATE" FunctionName="CMART0Model.Store.PROMOTION_UPDATE" />
-    <FunctionImportMapping FunctionImportName="usp_CategoryUpdate" FunctionName="CMART0Model.Store.usp_CategoryUpdate" />
+    <FunctionImportMapping FunctionImportName="SP_PRINT_Headquarter" FunctionName="CMART0Model.Store.SP_PRINT_Headquarter">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.SP_PRINT_Headquarter_Result">
+          <ScalarProperty Name="HeadquaterID" ColumnName="HeadquaterID" />
+          <ScalarProperty Name="ProposeID" ColumnName="ProposeID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_INVOICE_PRINT" FunctionName="CMART0Model.Store.SP_INVOICE_PRINT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CMART0Model.SP_INVOICE_PRINT_Result">
+          <ScalarProperty Name="BillID" ColumnName="BillID" />
+          <ScalarProperty Name="BRANCH" ColumnName="BRANCH" />
+          <ScalarProperty Name="POS" ColumnName="POS" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="InputMoney" ColumnName="InputMoney" />
+          <ScalarProperty Name="OutputMoney" ColumnName="OutputMoney" />
+          <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

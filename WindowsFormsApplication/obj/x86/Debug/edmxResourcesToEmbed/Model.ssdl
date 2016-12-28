@@ -66,11 +66,11 @@
   </EntityType>
   <EntityType Name="BranchOfficeReceiptDetail">
     <Key>
-      <PropertyRef Name="HeadquaterID" />
       <PropertyRef Name="BranchOfficeID" />
+      <PropertyRef Name="ProductID" />
     </Key>
-    <Property Name="HeadquaterID" Type="varchar" MaxLength="13" Nullable="false" />
     <Property Name="BranchOfficeID" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="ProductID" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="Quantity" Type="int" Nullable="false" />
     <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
@@ -100,8 +100,8 @@
     <Property Name="HeadquaterID" Type="varchar" MaxLength="13" Nullable="false" />
     <Property Name="ProductID" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="Quantity" Type="int" Nullable="false" />
-    <Property Name="Price" Type="float" />
-    <Property Name="ExpiryDate" Type="date" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="ExpiryDate" Type="date" />
     <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Price">
@@ -120,7 +120,7 @@
     </Key>
     <Property Name="ProductID" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Image" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Image" Type="varchar(max)" Nullable="false" />
     <Property Name="SupplierID" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="CategoryID" Type="varchar" MaxLength="10" Nullable="false" />
   </EntityType>
@@ -146,10 +146,10 @@
   </EntityType>
   <EntityType Name="ProposeReceiptDetail">
     <Key>
-      <PropertyRef Name="ProducID" />
+      <PropertyRef Name="ProductID" />
       <PropertyRef Name="ProposeID" />
     </Key>
-    <Property Name="ProducID" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="ProductID" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="ProposeID" Type="varchar" MaxLength="13" Nullable="false" />
     <Property Name="Quantity" Type="int" Nullable="false" />
   </EntityType>
@@ -193,6 +193,54 @@
       </Principal>
       <Dependent Role="Authority">
         <PropertyRef Name="NameOfAuthority" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchOfficeReceipt_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="BranchOfficeReceipt" Type="Self.BranchOfficeReceipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="BranchOfficeReceipt">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchOfficeReceipt_HeadquaterReceipt">
+    <End Role="HeadquaterReceipt" Type="Self.HeadquaterReceipt" Multiplicity="1" />
+    <End Role="BranchOfficeReceipt" Type="Self.BranchOfficeReceipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HeadquaterReceipt">
+        <PropertyRef Name="HeadquaterID" />
+      </Principal>
+      <Dependent Role="BranchOfficeReceipt">
+        <PropertyRef Name="HeadquaterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchOfficeReceiptDetail_BranchOfficeReceipt">
+    <End Role="BranchOfficeReceipt" Type="Self.BranchOfficeReceipt" Multiplicity="1" />
+    <End Role="BranchOfficeReceiptDetail" Type="Self.BranchOfficeReceiptDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchOfficeReceipt">
+        <PropertyRef Name="BranchOfficeID" />
+      </Principal>
+      <Dependent Role="BranchOfficeReceiptDetail">
+        <PropertyRef Name="BranchOfficeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchOfficeReceiptDetail_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="BranchOfficeReceiptDetail" Type="Self.BranchOfficeReceiptDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="BranchOfficeReceiptDetail">
+        <PropertyRef Name="ProductID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -240,31 +288,7 @@
         <PropertyRef Name="ProductID" />
       </Principal>
       <Dependent Role="ProposeReceiptDetail">
-        <PropertyRef Name="ProducID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ChiTietPhieuNhapHangChiNhanh_PhieuNhapHangChiNhanh">
-    <End Role="BranchOfficeReceipt" Type="Self.BranchOfficeReceipt" Multiplicity="1" />
-    <End Role="BranchOfficeReceiptDetail" Type="Self.BranchOfficeReceiptDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="BranchOfficeReceipt">
-        <PropertyRef Name="BranchOfficeID" />
-      </Principal>
-      <Dependent Role="BranchOfficeReceiptDetail">
-        <PropertyRef Name="BranchOfficeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ChiTietPhieuNhapHangChiNhanh_PhieuNhapHangTruSo">
-    <End Role="HeadquaterReceipt" Type="Self.HeadquaterReceipt" Multiplicity="1" />
-    <End Role="BranchOfficeReceiptDetail" Type="Self.BranchOfficeReceiptDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="HeadquaterReceipt">
-        <PropertyRef Name="HeadquaterID" />
-      </Principal>
-      <Dependent Role="BranchOfficeReceiptDetail">
-        <PropertyRef Name="HeadquaterID" />
+        <PropertyRef Name="ProductID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -324,30 +348,6 @@
         <PropertyRef Name="AccountID" />
       </Principal>
       <Dependent Role="ProposeReceipt">
-        <PropertyRef Name="AccountID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhieuNhapHangChiNhanh_PhieuNhapHangTruSo">
-    <End Role="HeadquaterReceipt" Type="Self.HeadquaterReceipt" Multiplicity="1" />
-    <End Role="BranchOfficeReceipt" Type="Self.BranchOfficeReceipt" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="HeadquaterReceipt">
-        <PropertyRef Name="HeadquaterID" />
-      </Principal>
-      <Dependent Role="BranchOfficeReceipt">
-        <PropertyRef Name="HeadquaterID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhieuNhapHangChiNhanh_TaiKhoan">
-    <End Role="Account" Type="Self.Account" Multiplicity="1" />
-    <End Role="BranchOfficeReceipt" Type="Self.BranchOfficeReceipt" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Account">
-        <PropertyRef Name="AccountID" />
-      </Principal>
-      <Dependent Role="BranchOfficeReceipt">
         <PropertyRef Name="AccountID" />
       </Dependent>
     </ReferentialConstraint>
@@ -413,6 +413,9 @@
     </ReferentialConstraint>
   </Association>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="Headquarter_SelectProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProposedID" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="PROMOTION_ID_AUTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="MAKM" Type="varchar" Mode="InOut" />
   </Function>
@@ -420,14 +423,6 @@
     <Parameter Name="TEXTSEARCH" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="PROMOTION_SELECT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="PROMOTION_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="PromotionID" Type="varchar" Mode="In" />
-    <Parameter Name="PromotionPrice" Type="float" Mode="In" />
-    <Parameter Name="StartDate" Type="date" Mode="In" />
-    <Parameter Name="Content" Type="nvarchar" Mode="In" />
-    <Parameter Name="Image" Type="varchar" Mode="In" />
-    <Parameter Name="ProductID" Type="varchar" Mode="In" />
-  </Function>
   <Function Name="SP_ACCOUNT_ID_AUTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="maacc" Type="varchar" Mode="InOut" />
   </Function>
@@ -472,10 +467,14 @@
     <Parameter Name="branch" Type="varchar" Mode="In" />
     <Parameter Name="pos" Type="int" Mode="In" />
     <Parameter Name="acc" Type="varchar" Mode="In" />
+    <Parameter Name="mahd" Type="varchar" Mode="InOut" />
   </Function>
   <Function Name="SP_BranchOfficeID_AUTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Branch" Type="varchar" Mode="In" />
     <Parameter Name="BranchOfficeID" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="sp_BranchOfficeSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TEXTSEARCH" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="SP_CATEGORY_ID_AUTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="madm" Type="varchar" Mode="InOut" />
@@ -525,13 +524,22 @@
     <Parameter Name="HEADQUATERID" Type="varchar" Mode="In" />
     <Parameter Name="BRANCH" Type="nvarchar" Mode="In" />
     <Parameter Name="ACOUNTID" Type="varchar" Mode="In" />
-    <Parameter Name="QUANTITY" Type="int" Mode="In" />
-    <Parameter Name="STATUS" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="SP_INSERT_HEADQUATER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PROPOSEID" Type="varchar" Mode="In" />
     <Parameter Name="TOTAL" Type="float" Mode="In" />
-    <Parameter Name="ACCOUNTID" Type="int" Mode="In" />
+    <Parameter Name="ACCOUNTID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_INSERT_HEADQUATERRECEIPT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProposeID" Type="varchar" Mode="In" />
+    <Parameter Name="AccountID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_INSERT_HEADQUATERRECEIPTDETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="HeadquarterID" Type="varchar" Mode="In" />
+    <Parameter Name="ProductID" Type="varchar" Mode="In" />
+    <Parameter Name="Quantity" Type="int" Mode="In" />
+    <Parameter Name="Price" Type="float" Mode="In" />
+    <Parameter Name="Status" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="SP_INSERT_PRODUCT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="NAME" Type="varchar" Mode="In" />
@@ -548,6 +556,21 @@
     <Parameter Name="ADDRESS" Type="nvarchar" Mode="In" />
     <Parameter Name="PHONENUMBER" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="SP_INVOICE_PRINT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BILLID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_LOAD_BRANCHRECEIPTDETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BranchOfficeID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_PRINT_BRANCHRECEIPTDETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BranchOfficeID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_PRINT_Headquarter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="HeadquarterID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_PRINT_Proposed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProposedID" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="SP_PRODUCT_ID_AUTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ID" Type="varchar" Mode="InOut" />
   </Function>
@@ -561,6 +584,11 @@
   <Function Name="SP_PROPOSE_ID_AUTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="mahd" Type="varchar" Mode="InOut" />
   </Function>
+  <Function Name="sp_ProposedDetail_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProductID" Type="varchar" Mode="In" />
+    <Parameter Name="ProposedID" Type="varchar" Mode="In" />
+    <Parameter Name="Quantity" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -570,8 +598,56 @@
     <Parameter Name="TEXTSEARCH" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="SP_SELECTALL_PRODUCT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_SUMREPORT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NGAY" Type="int" Mode="In" />
+    <Parameter Name="THANG" Type="int" Mode="In" />
+    <Parameter Name="NAM" Type="int" Mode="In" />
+    <Parameter Name="FROM" Type="datetime" Mode="In" />
+    <Parameter Name="TO" Type="datetime" Mode="In" />
+    <Parameter Name="PICK" Type="int" Mode="In" />
+    <Parameter Name="FILL" Type="int" Mode="In" />
+  </Function>
   <Function Name="SP_SUPPLIER_ID_AUTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="maacc" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="SP_THONGKEDOANHTHU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NGAY" Type="int" Mode="In" />
+    <Parameter Name="THANG" Type="int" Mode="In" />
+    <Parameter Name="NAM" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_THONGKEDOANHTHU_KTG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FROM" Type="datetime" Mode="In" />
+    <Parameter Name="TO" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="SP_THONGKEDOANHTHU_KTG_TOP10" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FROM" Type="datetime" Mode="In" />
+    <Parameter Name="TO" Type="datetime" Mode="In" />
+    <Parameter Name="top" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_THONGKEDOANHTHU_KTG_TOP20" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FROM" Type="datetime" Mode="In" />
+    <Parameter Name="TO" Type="datetime" Mode="In" />
+    <Parameter Name="top" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_THONGKEDOANHTHU_KTG_TOP5" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FROM" Type="datetime" Mode="In" />
+    <Parameter Name="TO" Type="datetime" Mode="In" />
+    <Parameter Name="top" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_THONGKEDOANHTHU_TOP10" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NGAY" Type="int" Mode="In" />
+    <Parameter Name="THANG" Type="int" Mode="In" />
+    <Parameter Name="NAM" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_THONGKEDOANHTHU_TOP20" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NGAY" Type="int" Mode="In" />
+    <Parameter Name="THANG" Type="int" Mode="In" />
+    <Parameter Name="NAM" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_THONGKEDOANHTHU_TOP5" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NGAY" Type="int" Mode="In" />
+    <Parameter Name="THANG" Type="int" Mode="In" />
+    <Parameter Name="NAM" Type="int" Mode="In" />
   </Function>
   <Function Name="SP_UPDATE_ACCOUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="AccountID" Type="varchar" Mode="In" />
@@ -583,10 +659,26 @@
     <Parameter Name="PASSOWRD" Type="varchar" Mode="In" />
   </Function>
   <Function Name="SP_UPDATE_BRANCHRECEIPT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="BRANCHOFF" Type="varchar" Mode="In" />
+    <Parameter Name="BranchOfficeID" Type="varchar" Mode="In" />
     <Parameter Name="HEADQUATERID" Type="varchar" Mode="In" />
-    <Parameter Name="QUANTITY" Type="int" Mode="In" />
-    <Parameter Name="STATUS" Type="nvarchar" Mode="In" />
+    <Parameter Name="ACOUNTID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_UPDATE_BRANCHRECEIPTDETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BranchOfficeID" Type="varchar" Mode="In" />
+    <Parameter Name="ProductID" Type="varchar" Mode="In" />
+    <Parameter Name="Quantity" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_UPDATE_HEADQUATERRECEIPT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="HEADQUATERID" Type="varchar" Mode="In" />
+    <Parameter Name="ProposeID" Type="varchar" Mode="In" />
+    <Parameter Name="TotalAmount" Type="float" Mode="In" />
+    <Parameter Name="AccountID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_UPDATE_HEADQUATERRECEIPTDETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="HEADQUATERID" Type="varchar" Mode="In" />
+    <Parameter Name="ProductID" Type="varchar" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
   </Function>
   <Function Name="SP_UPDATE_PRODUCT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ID" Type="varchar" Mode="In" />
@@ -621,6 +713,15 @@
   </Function>
   <Function Name="usp_Bill_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ProductID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_Bill_Insert_returnid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TotalAmount" Type="float" Mode="In" />
+    <Parameter Name="TotalQuantity" Type="int" Mode="In" />
+    <Parameter Name="iM" Type="float" Mode="In" />
+    <Parameter Name="oM" Type="float" Mode="In" />
+    <Parameter Name="branch" Type="varchar" Mode="In" />
+    <Parameter Name="pos" Type="int" Mode="In" />
+    <Parameter Name="acc" Type="varchar" Mode="In" />
   </Function>
   <Function Name="usp_Bill_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="TEXTSEARCH" Type="nvarchar" Mode="In" />
@@ -657,6 +758,20 @@
     <Parameter Name="Outputmoney" Type="float" Mode="In" />
     <Parameter Name="AccountID" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="usp_BillDetail_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillID" Type="varchar" Mode="In" />
+    <Parameter Name="ProductID" Type="varchar" Mode="In" />
+    <Parameter Name="quantity" Type="int" Mode="In" />
+    <Parameter Name="price" Type="float" Mode="In" />
+  </Function>
+  <Function Name="usp_BillDetail_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillID" Type="varchar" Mode="In" />
+    <Parameter Name="ProductID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_BranchOfficeDetailSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BranchOfficeID" Type="varchar" Mode="In" />
+    <Parameter Name="TEXTSEARCH" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="usp_BranchOfficeSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="TEXTSEARCH" Type="nvarchar" Mode="In" />
   </Function>
@@ -667,6 +782,19 @@
     <Parameter Name="CategoryID" Type="varchar" Mode="In" />
     <Parameter Name="Name" Type="nvarchar" Mode="In" />
     <Parameter Name="Quantity" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_CategoryUpdate2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CategoryID" Type="varchar" Mode="In" />
+    <Parameter Name="Quantity" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_HeadquarterDetailDeleteAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="HeadquarterID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_HeadquarterReceiptDetailSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TEXTSEARCH" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_HEADQUATERRECEIPTSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TEXTSEARCH" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="usp_PriceDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ProductID" Type="varchar" Mode="In" />
@@ -685,6 +813,49 @@
     <Parameter Name="ProductID" Type="varchar" Mode="In" />
     <Parameter Name="Price" Type="float" Mode="In" />
     <Parameter Name="EffectiveDay" Type="date" Mode="In" />
+  </Function>
+  <Function Name="usp_PromotionUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="varchar" Mode="In" />
+    <Parameter Name="PPrice" Type="float" Mode="In" />
+    <Parameter Name="Date" Type="date" Mode="In" />
+    <Parameter Name="Cont" Type="nvarchar" Mode="In" />
+    <Parameter Name="Img" Type="varchar" Mode="In" />
+    <Parameter Name="ProID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_PromotionUpdateTest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="varchar" Mode="In" />
+    <Parameter Name="PPrice" Type="float" Mode="In" />
+    <Parameter Name="Cont" Type="nvarchar" Mode="In" />
+    <Parameter Name="Img" Type="varchar" Mode="In" />
+    <Parameter Name="ProID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_ProposedDetailDeleteAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProposedID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_ProposedDetailSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TEXTSEARCH" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_ProposedDetailUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProductID" Type="varchar" Mode="In" />
+    <Parameter Name="ProposeID" Type="varchar" Mode="In" />
+    <Parameter Name="Quantity" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ProposedSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TEXTSEARCH" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_ProposedUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="varchar" Mode="In" />
+    <Parameter Name="SuppID" Type="varchar" Mode="In" />
+    <Parameter Name="AccID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_SupplierSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TEXTSEARCH" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_SupplierUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="varchar" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar" Mode="In" />
+    <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
   </Function>
   <EntityContainer Name="CMART0ModelStoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
@@ -712,6 +883,22 @@
       <End Role="AuthorityName" EntitySet="AuthorityName" />
       <End Role="Authority" EntitySet="Authority" />
     </AssociationSet>
+    <AssociationSet Name="FK_BranchOfficeReceipt_Account" Association="Self.FK_BranchOfficeReceipt_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="BranchOfficeReceipt" EntitySet="BranchOfficeReceipt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchOfficeReceipt_HeadquaterReceipt" Association="Self.FK_BranchOfficeReceipt_HeadquaterReceipt">
+      <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipt" />
+      <End Role="BranchOfficeReceipt" EntitySet="BranchOfficeReceipt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchOfficeReceiptDetail_BranchOfficeReceipt" Association="Self.FK_BranchOfficeReceiptDetail_BranchOfficeReceipt">
+      <End Role="BranchOfficeReceipt" EntitySet="BranchOfficeReceipt" />
+      <End Role="BranchOfficeReceiptDetail" EntitySet="BranchOfficeReceiptDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchOfficeReceiptDetail_Product" Association="Self.FK_BranchOfficeReceiptDetail_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="BranchOfficeReceiptDetail" EntitySet="BranchOfficeReceiptDetail" />
+    </AssociationSet>
     <AssociationSet Name="FK_ChiTietHoaDon_HoaDon" Association="Self.FK_ChiTietHoaDon_HoaDon">
       <End Role="Bill" EntitySet="Bill" />
       <End Role="BillDetail" EntitySet="BillDetail" />
@@ -727,14 +914,6 @@
     <AssociationSet Name="FK_ChiTietPhieuDeXuatNhapHang_SanPham" Association="Self.FK_ChiTietPhieuDeXuatNhapHang_SanPham">
       <End Role="Product" EntitySet="Product" />
       <End Role="ProposeReceiptDetail" EntitySet="ProposeReceiptDetail" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ChiTietPhieuNhapHangChiNhanh_PhieuNhapHangChiNhanh" Association="Self.FK_ChiTietPhieuNhapHangChiNhanh_PhieuNhapHangChiNhanh">
-      <End Role="BranchOfficeReceipt" EntitySet="BranchOfficeReceipt" />
-      <End Role="BranchOfficeReceiptDetail" EntitySet="BranchOfficeReceiptDetail" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ChiTietPhieuNhapHangChiNhanh_PhieuNhapHangTruSo" Association="Self.FK_ChiTietPhieuNhapHangChiNhanh_PhieuNhapHangTruSo">
-      <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipt" />
-      <End Role="BranchOfficeReceiptDetail" EntitySet="BranchOfficeReceiptDetail" />
     </AssociationSet>
     <AssociationSet Name="FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo" Association="Self.FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo">
       <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipt" />
@@ -755,14 +934,6 @@
     <AssociationSet Name="FK_PhieuDeXuatNhapHang_TaiKhoan" Association="Self.FK_PhieuDeXuatNhapHang_TaiKhoan">
       <End Role="Account" EntitySet="Account" />
       <End Role="ProposeReceipt" EntitySet="ProposeReceipt" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhieuNhapHangChiNhanh_PhieuNhapHangTruSo" Association="Self.FK_PhieuNhapHangChiNhanh_PhieuNhapHangTruSo">
-      <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipt" />
-      <End Role="BranchOfficeReceipt" EntitySet="BranchOfficeReceipt" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhieuNhapHangChiNhanh_TaiKhoan" Association="Self.FK_PhieuNhapHangChiNhanh_TaiKhoan">
-      <End Role="Account" EntitySet="Account" />
-      <End Role="BranchOfficeReceipt" EntitySet="BranchOfficeReceipt" />
     </AssociationSet>
     <AssociationSet Name="FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang" Association="Self.FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang">
       <End Role="ProposeReceipt" EntitySet="ProposeReceipt" />

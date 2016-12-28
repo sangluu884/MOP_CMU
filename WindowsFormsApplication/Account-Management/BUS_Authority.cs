@@ -38,7 +38,8 @@ namespace WindowsFormsApplication.Account_Management
             bool flag = false;
             try
             {
-                db.Authorities.AddObject(authority);
+                db.Authorities.Add(authority);
+                //db.Authorities.AddObject(authority);
                 db.SaveChanges();
                 flag = true;
             }
@@ -77,7 +78,7 @@ namespace WindowsFormsApplication.Account_Management
                 db.SaveChanges();
                 flag = true;
             }
-            catch (Exception e)
+            catch
             {
                 flag = false;
             }

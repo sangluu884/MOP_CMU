@@ -11,12 +11,15 @@ namespace WindowsFormsApplication.Account_Management
 {
     public partial class GUI_Account : Form
     {
-        string accountID1 = null;
         BUS_Account BUS_Acc = new BUS_Account();
-        public GUI_Account()
+        ValidationExtensition validation = new ValidationExtensition();
+        string getAccount;
+
+        public GUI_Account(string re)
         {
             InitializeComponent();
             LoadAccount();
+            getAccount=re;
         }
 
         private void LoadAccount()
@@ -42,6 +45,7 @@ namespace WindowsFormsApplication.Account_Management
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
+            string tmp = null;
             string accountID = txtAccountID.Text;
             string fullName = txtFullName.Text;
             string address = txtAddress.Text;
@@ -49,17 +53,63 @@ namespace WindowsFormsApplication.Account_Management
             string cMND = txtCMND.Text;
             string userName = txtUserName.Text;
             string password = txtPassword.Text;
-            if (txtConfirmPassword.Text == password)
+            if (validation.Required(txtFullName) || validation.Required(txtAddress) || validation.Required(txtPhoneNumber) || validation.Required(txtCMND) || validation.Required(txtUserName) || validation.Required(txtPassword) || validation.RegularNumberExpression(txtPhoneNumber) || validation.RegularNumberExpression(txtCMND))
             {
-                bool flag = BUS_Acc.InsertAccount(accountID, fullName, address, phoneNumber, cMND, userName, password);
-                if (flag == true)
-                    MessageBox.Show("Create account successfully!");
-                else MessageBox.Show("Create account unsuccessfully!");
-                Clean();
-                LoadAccount();
+                if (validation.Required(txtFullName))
+                {
+                    tmp += "Full Name can't empty \n";
+                } if (validation.Required(txtAddress))
+                {
+                    tmp += "Address can't empty \n";
+                } if (validation.Required(txtPhoneNumber))
+                {
+                    tmp += "Phone Number can't empty \n";
+                }
+                if (!validation.Required(txtPhoneNumber) && validation.RegularNumberExpression(txtPhoneNumber))
+                {
+                    tmp += "Phone Number must be numbers only \n";
+                }
+                if (validation.Required(txtCMND))
+                {
+                    tmp += "CMND can't empty \n";
+                }
+                if (!validation.Required(txtCMND) && validation.RegularNumberExpression(txtCMND))
+                {
+                    tmp += "CMND must be numbers only\n";
+                }
+                if (validation.Required(txtUserName))
+                {
+                    tmp += "User can't empty \n";
+                }
+                if (validation.Required(txtPassword))
+                {
+                    tmp += "Password can't empty \n";
+                }
+                if (validation.Required(txtConfirmPassword))
+                {
+                    tmp += "Confirm Password can't empty \n";
+                }
+                if (tmp != null)
+                {
+                    MessageBox.Show(tmp);
+                }
             }
-            else MessageBox.Show("Confirm password is not correct");
+            else
+            {
+                if (txtConfirmPassword.Text == password)
+                {
+                    bool flag = BUS_Acc.InsertAccount(accountID, fullName, address, phoneNumber, cMND, userName, password);
+                    if (flag == true)
+                        MessageBox.Show("Create account successfully!");
+                    else MessageBox.Show("Create account unsuccessfully!");
+                    Clean();
+                    LoadAccount();
+                }
+                else MessageBox.Show("Confirm password is not correct");
 
+            }
+            
+            
 
         }
 
@@ -114,9 +164,12 @@ namespace WindowsFormsApplication.Account_Management
                 var row = lstAccounts.SelectedRows[0];
                 var cell = row.Cells["AccountID"];
                 string accountID = (string)cell.Value;
-
-                BUS_Acc.Delete(accountID);
-                LoadAccount();
+                DialogResult result = MessageBox.Show("Do you really want to delete the Account \"" + accountID + "\"?", "Confirm product deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    BUS_Acc.Delete(accountID);
+                    LoadAccount();
+                }
             }
         }
 
@@ -135,6 +188,14 @@ namespace WindowsFormsApplication.Account_Management
         {
             GUI_Authority aut = new GUI_Authority();
             aut.ShowDialog();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            GUI_MainFrm main = new GUI_MainFrm(getAccount);
+            main.Closed += (s, args) => this.Close();
+            main.ShowDialog();
         }
     }
 }
