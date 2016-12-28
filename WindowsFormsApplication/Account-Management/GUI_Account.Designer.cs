@@ -40,6 +40,7 @@
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtFullName = new System.Windows.Forms.TextBox();
+            this.txtAccountID = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -49,14 +50,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.lstAccounts = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.btnRoleManagement = new System.Windows.Forms.ToolStripMenuItem();
+            this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAuthorityManagement = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.txtAccountID = new System.Windows.Forms.TextBox();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lstAccounts)).BeginInit();
@@ -66,6 +66,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 43);
             this.label1.Name = "label1";
@@ -75,6 +76,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.btnClean);
             this.groupBox1.Controls.Add(this.btnUpdate);
             this.groupBox1.Controls.Add(this.btnCreate);
@@ -135,6 +137,7 @@
             // 
             this.txtConfirmPassword.Location = new System.Drawing.Point(570, 139);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
+            this.txtConfirmPassword.PasswordChar = '*';
             this.txtConfirmPassword.Size = new System.Drawing.Size(249, 20);
             this.txtConfirmPassword.TabIndex = 15;
             // 
@@ -142,6 +145,7 @@
             // 
             this.txtPassword.Location = new System.Drawing.Point(570, 105);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(249, 20);
             this.txtPassword.TabIndex = 14;
             // 
@@ -179,6 +183,14 @@
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.Size = new System.Drawing.Size(249, 20);
             this.txtFullName.TabIndex = 9;
+            // 
+            // txtAccountID
+            // 
+            this.txtAccountID.Location = new System.Drawing.Point(133, 31);
+            this.txtAccountID.Name = "txtAccountID";
+            this.txtAccountID.ReadOnly = true;
+            this.txtAccountID.Size = new System.Drawing.Size(249, 20);
+            this.txtAccountID.TabIndex = 8;
             // 
             // label9
             // 
@@ -254,71 +266,15 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.BackColor = System.Drawing.Color.Transparent;
             this.groupBox3.Controls.Add(this.btnDelete);
             this.groupBox3.Controls.Add(this.lstAccounts);
             this.groupBox3.Location = new System.Drawing.Point(44, 389);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(867, 280);
+            this.groupBox3.Size = new System.Drawing.Size(867, 238);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "List of Account";
-            // 
-            // lstAccounts
-            // 
-            this.lstAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.lstAccounts.Location = new System.Drawing.Point(15, 19);
-            this.lstAccounts.Name = "lstAccounts";
-            this.lstAccounts.Size = new System.Drawing.Size(789, 242);
-            this.lstAccounts.TabIndex = 0;
-            this.lstAccounts.DoubleClick += new System.EventHandler(this.lstAccounts_DoubleClick);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnRoleManagement,
-            this.btnAuthorityManagement});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(959, 24);
-            this.menuStrip1.TabIndex = 3;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // btnRoleManagement
-            // 
-            this.btnRoleManagement.Name = "btnRoleManagement";
-            this.btnRoleManagement.Size = new System.Drawing.Size(116, 20);
-            this.btnRoleManagement.Text = "Role Management";
-            // 
-            // btnAuthorityManagement
-            // 
-            this.btnAuthorityManagement.Name = "btnAuthorityManagement";
-            this.btnAuthorityManagement.Size = new System.Drawing.Size(143, 20);
-            this.btnAuthorityManagement.Text = "Authority Management";
-            this.btnAuthorityManagement.Click += new System.EventHandler(this.btnAuthorityManagement_Click);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(519, 360);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 4;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(308, 362);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(205, 20);
-            this.txtSearch.TabIndex = 5;
-            // 
-            // txtAccountID
-            // 
-            this.txtAccountID.Location = new System.Drawing.Point(133, 31);
-            this.txtAccountID.Name = "txtAccountID";
-            this.txtAccountID.Size = new System.Drawing.Size(249, 20);
-            this.txtAccountID.TabIndex = 8;
             // 
             // btnDelete
             // 
@@ -330,11 +286,65 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // lstAccounts
+            // 
+            this.lstAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.lstAccounts.Location = new System.Drawing.Point(15, 19);
+            this.lstAccounts.Name = "lstAccounts";
+            this.lstAccounts.Size = new System.Drawing.Size(789, 202);
+            this.lstAccounts.TabIndex = 0;
+            this.lstAccounts.DoubleClick += new System.EventHandler(this.lstAccounts_DoubleClick);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.backToolStripMenuItem,
+            this.btnAuthorityManagement});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(948, 24);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // backToolStripMenuItem
+            // 
+            this.backToolStripMenuItem.Name = "backToolStripMenuItem";
+            this.backToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.backToolStripMenuItem.Text = "Back";
+            this.backToolStripMenuItem.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // btnAuthorityManagement
+            // 
+            this.btnAuthorityManagement.Name = "btnAuthorityManagement";
+            this.btnAuthorityManagement.Size = new System.Drawing.Size(143, 20);
+            this.btnAuthorityManagement.Text = "Authority Management";
+            this.btnAuthorityManagement.Click += new System.EventHandler(this.btnAuthorityManagement_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(540, 360);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 4;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(329, 362);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(205, 20);
+            this.txtSearch.TabIndex = 5;
+            // 
             // GUI_Account
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(959, 681);
+            this.BackgroundImage = global::WindowsFormsApplication.Properties.Resources._8;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(948, 654);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.groupBox3);
@@ -380,11 +390,11 @@
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.DataGridView lstAccounts;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem btnRoleManagement;
         private System.Windows.Forms.ToolStripMenuItem btnAuthorityManagement;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.TextBox txtAccountID;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem;
     }
 }

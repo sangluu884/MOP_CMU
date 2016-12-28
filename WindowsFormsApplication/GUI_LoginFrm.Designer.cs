@@ -41,16 +41,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(124, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 25);
+            this.label1.Size = new System.Drawing.Size(73, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Login";
+            this.label1.Text = "LOGIN";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(21, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
@@ -60,6 +62,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Location = new System.Drawing.Point(21, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
@@ -83,17 +86,19 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(211, 183);
+            this.btnLogin.Location = new System.Drawing.Point(211, 167);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.KeyUp += new System.Windows.Forms.KeyEventHandler(this.btnLogin_KeyUp);
             // 
             // lblAUsername
             // 
             this.lblAUsername.AutoSize = true;
+            this.lblAUsername.BackColor = System.Drawing.Color.Transparent;
             this.lblAUsername.Location = new System.Drawing.Point(72, 134);
             this.lblAUsername.Name = "lblAUsername";
             this.lblAUsername.Size = new System.Drawing.Size(35, 13);
@@ -103,6 +108,7 @@
             // lblAPassword
             // 
             this.lblAPassword.AutoSize = true;
+            this.lblAPassword.BackColor = System.Drawing.Color.Transparent;
             this.lblAPassword.Location = new System.Drawing.Point(72, 147);
             this.lblAPassword.Name = "lblAPassword";
             this.lblAPassword.Size = new System.Drawing.Size(35, 13);
@@ -113,7 +119,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(307, 218);
+            this.BackgroundImage = global::WindowsFormsApplication.Properties.Resources._8;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(307, 202);
             this.Controls.Add(this.lblAPassword);
             this.Controls.Add(this.lblAUsername);
             this.Controls.Add(this.btnLogin);
@@ -123,6 +131,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "GUI_LoginFrm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GUI_LoginFrm";
             this.ResumeLayout(false);
             this.PerformLayout();

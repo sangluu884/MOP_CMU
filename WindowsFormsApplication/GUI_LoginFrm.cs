@@ -11,18 +11,13 @@ namespace WindowsFormsApplication
 {
     public partial class GUI_LoginFrm : Form
     {
+        CMART0Entities db = new CMART0Entities();
+       
         public GUI_LoginFrm()
         {
             InitializeComponent();
             lblAUsername.Visible = false;
             lblAPassword.Visible = false;
-        }
-
-        public Account Find(string userName)
-        {
-            CMART0Entities db = new CMART0Entities();
-            Account acc = new Account();
-            return db.Accounts.FirstOrDefault(x => x.UserName == userName);
         }
 
         public bool Required(TextBox txt)
@@ -35,7 +30,7 @@ namespace WindowsFormsApplication
             else return true;
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        public void btnLogin_Click(object sender, EventArgs e)
         {
             var nv = Find(txtUserName.Text);
             if (nv == null)
@@ -56,11 +51,62 @@ namespace WindowsFormsApplication
             }
             if ((nv != null) && (nv.Password.Equals(txtPassoword.Text)))
             {
-                GUI_MainFrm main = new GUI_MainFrm();
-                //GUI_LoginFrm login = new GUI_LoginFrm();
-                //login.Close();
-                main.Show();
+                this.Hide();
+                GUI_MainFrm main = new GUI_MainFrm(Test());
+                main.Closed += (s, args) => this.Close();
+                main.ShowDialog();
+            }
+           
+        }
+
+        public string Test()
+        {
+            Account kq=null;
+            var nv = Find(txtUserName.Text);
+            if ((nv != null) && (nv.Password.Equals(txtPassoword.Text)))
+            {
+                kq = nv;
+            }
+            string re = kq.AccountID;
+            return re;
+        }
+
+        public Account Find(string userName)
+        {
+            CMART0Entities db = new CMART0Entities();
+            Account acc = new Account();
+            return db.Accounts.FirstOrDefault(x => x.UserName == userName);
+        }
+
+        private void btnLogin_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                var nv = Find(txtUserName.Text);
+                if (nv == null)
+                {
+                    lblAUsername.Text = "Incorrect User name";
+                    lblAUsername.Visible = true;
+                }
+                else
+                {
+                    lblAUsername.Visible = false;
+                    if (!nv.Password.Equals(txtPassoword.Text))
+                    {
+                        lblAPassword.Text = "Incorrect Password";
+                        lblAPassword.Visible = true;
+                    }
+                    else lblAPassword.Visible = false;
+                }
+                if ((nv != null) && (nv.Password.Equals(txtPassoword.Text)))
+                {
+                    this.Hide();
+                    GUI_MainFrm main = new GUI_MainFrm(Test());
+                    main.Closed += (s, args) => this.Close();
+                    main.ShowDialog();
+                }
             }
         }
+
     }
 }

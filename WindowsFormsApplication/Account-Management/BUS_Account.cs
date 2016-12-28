@@ -12,6 +12,7 @@ namespace WindowsFormsApplication.Account_Management
         // LOAD LIST
         public List<Account> LoadListAccount()
         {
+            CMART0Entities db = new CMART0Entities();
             List<Account> lst = db.Accounts.ToList();
             return lst;
         }
@@ -42,7 +43,7 @@ namespace WindowsFormsApplication.Account_Management
                 db.usp_AccountUpdate(account, fullName, address, phoneNumber, cMND, userName, password);
                 flag = true;
             }
-            catch (Exception e)
+            catch
             {
                 flag = false;
             }
@@ -57,12 +58,12 @@ namespace WindowsFormsApplication.Account_Management
             Account acc = db.Accounts.Single(x => x.AccountID == accountID);
             try
             {
-                db.DeleteObject(acc);
+                db.Accounts.Remove(acc);
                 //db.usp_Account_Delete(accountID);
                 db.SaveChanges();
                 flag = true;
             }
-            catch (Exception g)
+            catch
             {
                 flag = false;
             }
