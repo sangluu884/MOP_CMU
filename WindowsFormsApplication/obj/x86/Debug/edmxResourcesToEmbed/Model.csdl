@@ -1,0 +1,1371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CMART0Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="CMART0Entities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="usp_AccountUpdate">
+      <Parameter Name="AccountID" Mode="In" Type="String" />
+      <Parameter Name="FullName" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+      <Parameter Name="CMND" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AccountSearch" ReturnType="Collection(CMART0Model.usp_AccountSearch_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROMOTION_ID_AUTO">
+      <Parameter Name="MAKM" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ACCOUNT_ID_AUTO">
+      <Parameter Name="maacc" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ACCOUNT_insert">
+      <Parameter Name="fullName" Mode="In" Type="String" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="phoneNumber" Mode="In" Type="String" />
+      <Parameter Name="CMND" Mode="In" Type="String" />
+      <Parameter Name="userName" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ADD">
+      <Parameter Name="NAME" Mode="In" Type="String" />
+      <Parameter Name="SUPPLIERID" Mode="In" Type="String" />
+      <Parameter Name="CATEGORYID" Mode="In" Type="String" />
+      <Parameter Name="IMAGE" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="SP_BILL_ID_AUTO">
+      <Parameter Name="Branch" Mode="In" Type="String" />
+      <Parameter Name="POS" Mode="In" Type="String" />
+      <Parameter Name="ID" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_BILL_insert">
+      <Parameter Name="TotalAmount" Mode="In" Type="Double" />
+      <Parameter Name="TotalQuantity" Mode="In" Type="Int32" />
+      <Parameter Name="iM" Mode="In" Type="Double" />
+      <Parameter Name="oM" Mode="In" Type="Double" />
+      <Parameter Name="branch" Mode="In" Type="String" />
+      <Parameter Name="pos" Mode="In" Type="Int32" />
+      <Parameter Name="acc" Mode="In" Type="String" />
+      <Parameter Name="mahd" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_BranchOfficeID_AUTO">
+      <Parameter Name="Branch" Mode="In" Type="String" />
+      <Parameter Name="BranchOfficeID" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CATEGORY_ID_AUTO">
+      <Parameter Name="madm" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_CATEGORY_insert">
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="quantity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_HEADQUATER_ID_AUTO">
+      <Parameter Name="mahd" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(CMART0Model.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(CMART0Model.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_INSERT_ACCOUNTID">
+      <Parameter Name="FULLNAME" Mode="In" Type="String" />
+      <Parameter Name="ADDRESS" Mode="In" Type="String" />
+      <Parameter Name="PHONENUMBER" Mode="In" Type="String" />
+      <Parameter Name="CMND" Mode="In" Type="String" />
+      <Parameter Name="USERNAME" Mode="In" Type="String" />
+      <Parameter Name="PASSOWRD" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_INSERT_BILL">
+      <Parameter Name="POS" Mode="In" Type="Int32" />
+      <Parameter Name="TOTALA" Mode="In" Type="Double" />
+      <Parameter Name="TOTALQ" Mode="In" Type="Int32" />
+      <Parameter Name="INPUTMONEY" Mode="In" Type="Double" />
+      <Parameter Name="OUTPUT" Mode="In" Type="Double" />
+      <Parameter Name="ACCOUNTID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_INSERT_BRANCHRECEIPT">
+      <Parameter Name="HEADQUATERID" Mode="In" Type="String" />
+      <Parameter Name="BRANCH" Mode="In" Type="String" />
+      <Parameter Name="ACOUNTID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_INSERT_HEADQUATER">
+      <Parameter Name="PROPOSEID" Mode="In" Type="String" />
+      <Parameter Name="TOTAL" Mode="In" Type="Double" />
+      <Parameter Name="ACCOUNTID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_INSERT_PRODUCT">
+      <Parameter Name="NAME" Mode="In" Type="String" />
+      <Parameter Name="SUPPLIERID" Mode="In" Type="String" />
+      <Parameter Name="CATEGORYID" Mode="In" Type="String" />
+      <Parameter Name="IMAGE" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_INSERT_PROPOSE">
+      <Parameter Name="SUPPLIERID" Mode="In" Type="String" />
+      <Parameter Name="ACCOUNTID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_INSERT_SUPPLIER">
+      <Parameter Name="NAME" Mode="In" Type="String" />
+      <Parameter Name="ADDRESS" Mode="In" Type="String" />
+      <Parameter Name="PHONENUMBER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_PRODUCT_ID_AUTO">
+      <Parameter Name="ID" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_PROMOTION_INSERT">
+      <Parameter Name="PromotionPrice" Mode="In" Type="Single" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Content" Mode="In" Type="String" />
+      <Parameter Name="Image" Mode="In" Type="String" />
+      <Parameter Name="ProductId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_PROPOSE_ID_AUTO">
+      <Parameter Name="mahd" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SUPPLIER_ID_AUTO">
+      <Parameter Name="maacc" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UPDATE_BRANCHRECEIPT">
+      <Parameter Name="BranchOfficeID" Mode="In" Type="String" />
+      <Parameter Name="HEADQUATERID" Mode="In" Type="String" />
+      <Parameter Name="ACOUNTID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UPDATE_PRODUCT">
+      <Parameter Name="ID" Mode="In" Type="String" />
+      <Parameter Name="NAME" Mode="In" Type="String" />
+      <Parameter Name="SUPPLIERID" Mode="In" Type="String" />
+      <Parameter Name="CATEGORYID" Mode="In" Type="String" />
+      <Parameter Name="IMAGE" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="usp_Bill_Delete">
+      <Parameter Name="ProductID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Bill_Search" ReturnType="Collection(CMART0Model.usp_Bill_Search_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Bill_SelectAll" ReturnType="Collection(CMART0Model.usp_Bill_SelectAll_Result)" />
+    <FunctionImport Name="usp_Bill_Update">
+      <Parameter Name="BillID" Mode="In" Type="String" />
+      <Parameter Name="SaleDate" Mode="In" Type="DateTime" />
+      <Parameter Name="POS" Mode="In" Type="Int32" />
+      <Parameter Name="TotalAmount" Mode="In" Type="Double" />
+      <Parameter Name="TotalQuantity" Mode="In" Type="Int32" />
+      <Parameter Name="Inputmoney" Mode="In" Type="Double" />
+      <Parameter Name="Outputmoney" Mode="In" Type="Double" />
+      <Parameter Name="AccountID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_BranchOfficeSearch" ReturnType="Collection(CMART0Model.usp_BranchOfficeSearch_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UPDATE_ACCOUNT">
+      <Parameter Name="AccountID" Mode="In" Type="String" />
+      <Parameter Name="FULLNAME" Mode="In" Type="String" />
+      <Parameter Name="ADDRESS" Mode="In" Type="String" />
+      <Parameter Name="PHONENUMBER" Mode="In" Type="String" />
+      <Parameter Name="CMND" Mode="In" Type="String" />
+      <Parameter Name="USERNAME" Mode="In" Type="String" />
+      <Parameter Name="PASSOWRD" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Account_Delete">
+      <Parameter Name="AccountID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Authority_Insert">
+      <Parameter Name="accountID" Mode="In" Type="String" />
+      <Parameter Name="nameOfAuthority" Mode="In" Type="String" />
+      <Parameter Name="view" Mode="In" Type="Boolean" />
+      <Parameter Name="create" Mode="In" Type="Boolean" />
+      <Parameter Name="update" Mode="In" Type="Boolean" />
+      <Parameter Name="delete" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Bill_Search_BillId" ReturnType="Collection(CMART0Model.usp_Bill_Search_BillId_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Bill_Search_FullName" ReturnType="Collection(CMART0Model.usp_Bill_Search_FullName_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Bill_Search_Inputmoney" ReturnType="Collection(CMART0Model.usp_Bill_Search_Inputmoney_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Bill_Search_POS" ReturnType="Collection(CMART0Model.usp_Bill_Search_POS_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Bill_Search_SaleDate" ReturnType="Collection(CMART0Model.usp_Bill_Search_SaleDate_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Bill_Search_TotalAmount" ReturnType="Collection(CMART0Model.usp_Bill_Search_TotalAmount_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Bill_Search_TotalQuantity" ReturnType="Collection(CMART0Model.usp_Bill_Search_TotalQuantity_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AuthorityUpdate">
+      <Parameter Name="AccountID" Mode="In" Type="String" />
+      <Parameter Name="NameOfAuthority" Mode="In" Type="String" />
+      <Parameter Name="Create" Mode="In" Type="Boolean" />
+      <Parameter Name="Update" Mode="In" Type="Boolean" />
+      <Parameter Name="Delete" Mode="In" Type="Boolean" />
+      <Parameter Name="View" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PROMOTION_SEARCH" ReturnType="Collection(CMART0Model.PROMOTION_SEARCH_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SEARCH_PRODUCT" ReturnType="Collection(CMART0Model.SP_SEARCH_PRODUCT_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SELECTALL_PRODUCT" ReturnType="Collection(CMART0Model.SP_SELECTALL_PRODUCT_Result)" />
+    <FunctionImport Name="usp_CategorySearch" ReturnType="Collection(CMART0Model.usp_CategorySearch_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_PriceDelete">
+      <Parameter Name="ProductID" Mode="In" Type="String" />
+      <Parameter Name="Price" Mode="In" Type="Double" />
+      <Parameter Name="EffectiveDay" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="usp_PriceInsert">
+      <Parameter Name="ProductID" Mode="In" Type="String" />
+      <Parameter Name="Price" Mode="In" Type="Double" />
+      <Parameter Name="EffectiveDay" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="usp_PriceSearch" ReturnType="Collection(CMART0Model.usp_PriceSearch_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_PriceUpdate">
+      <Parameter Name="ProductID" Mode="In" Type="String" />
+      <Parameter Name="Price" Mode="In" Type="Double" />
+      <Parameter Name="EffectiveDay" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PROMOTION_SELECT" ReturnType="Collection(CMART0Model.PROMOTION_SELECT_Result)" />
+    <FunctionImport Name="PROMOTION_UPDATE">
+      <Parameter Name="PromotionID" Mode="In" Type="String" />
+      <Parameter Name="PromotionPrice" Mode="In" Type="Double" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Content" Mode="In" Type="String" />
+      <Parameter Name="Image" Mode="In" Type="String" />
+      <Parameter Name="ProductID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_CategoryUpdate">
+      <Parameter Name="CategoryID" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Quantity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_INSERT_HEADQUATERRECEIPT">
+      <Parameter Name="ProposeID" Mode="In" Type="String" />
+      <Parameter Name="AccountID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UPDATE_HEADQUATERRECEIPT">
+      <Parameter Name="HEADQUATERID" Mode="In" Type="String" />
+      <Parameter Name="ProposeID" Mode="In" Type="String" />
+      <Parameter Name="TotalAmount" Mode="In" Type="Double" />
+      <Parameter Name="AccountID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_HEADQUATERRECEIPTSearch" ReturnType="Collection(CMART0Model.usp_HEADQUATERRECEIPTSearch_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_CategoryUpdate2">
+      <Parameter Name="CategoryID" Mode="In" Type="String" />
+      <Parameter Name="Quantity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Bill_Insert_returnid" ReturnType="Collection(CMART0Model.usp_Bill_Insert_returnid_Result)">
+      <Parameter Name="TotalAmount" Mode="In" Type="Double" />
+      <Parameter Name="TotalQuantity" Mode="In" Type="Int32" />
+      <Parameter Name="iM" Mode="In" Type="Double" />
+      <Parameter Name="oM" Mode="In" Type="Double" />
+      <Parameter Name="branch" Mode="In" Type="String" />
+      <Parameter Name="pos" Mode="In" Type="Int32" />
+      <Parameter Name="acc" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_BillDetail_Add">
+      <Parameter Name="BillID" Mode="In" Type="String" />
+      <Parameter Name="ProductID" Mode="In" Type="String" />
+      <Parameter Name="quantity" Mode="In" Type="Int32" />
+      <Parameter Name="price" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="usp_BillDetail_Delete">
+      <Parameter Name="BillID" Mode="In" Type="String" />
+      <Parameter Name="ProductID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_PromotionUpdate">
+      <Parameter Name="ID" Mode="In" Type="String" />
+      <Parameter Name="PPrice" Mode="In" Type="Double" />
+      <Parameter Name="Date" Mode="In" Type="DateTime" />
+      <Parameter Name="Cont" Mode="In" Type="String" />
+      <Parameter Name="Img" Mode="In" Type="String" />
+      <Parameter Name="ProID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_PromotionUpdateTest">
+      <Parameter Name="ID" Mode="In" Type="String" />
+      <Parameter Name="PPrice" Mode="In" Type="Double" />
+      <Parameter Name="Cont" Mode="In" Type="String" />
+      <Parameter Name="Img" Mode="In" Type="String" />
+      <Parameter Name="ProID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_SupplierSearch" ReturnType="Collection(CMART0Model.usp_SupplierSearch_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_SupplierUpdate">
+      <Parameter Name="ID" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Proposed_Insert">
+      <Parameter Name="Date" Mode="In" Type="DateTime" />
+      <Parameter Name="SuppID" Mode="In" Type="String" />
+      <Parameter Name="AccID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ProposedSearch" ReturnType="Collection(CMART0Model.usp_ProposedSearch_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ProposedUpdate">
+      <Parameter Name="ID" Mode="In" Type="String" />
+      <Parameter Name="SuppID" Mode="In" Type="String" />
+      <Parameter Name="AccID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_THONGKEDOANHTHU" ReturnType="Collection(CMART0Model.SP_THONGKEDOANHTHU_Result)">
+      <Parameter Name="NGAY" Mode="In" Type="Int32" />
+      <Parameter Name="THANG" Mode="In" Type="Int32" />
+      <Parameter Name="NAM" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_THONGKEDOANHTHU_KTG" ReturnType="Collection(CMART0Model.SP_THONGKEDOANHTHU_KTG_Result)">
+      <Parameter Name="FROM" Mode="In" Type="DateTime" />
+      <Parameter Name="TO" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SP_THONGKEDOANHTHU_KTG_TOP10" ReturnType="Collection(CMART0Model.SP_THONGKEDOANHTHU_KTG_TOP10_Result)">
+      <Parameter Name="FROM" Mode="In" Type="DateTime" />
+      <Parameter Name="TO" Mode="In" Type="DateTime" />
+      <Parameter Name="top" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_THONGKEDOANHTHU_KTG_TOP20" ReturnType="Collection(CMART0Model.SP_THONGKEDOANHTHU_KTG_TOP20_Result)">
+      <Parameter Name="FROM" Mode="In" Type="DateTime" />
+      <Parameter Name="TO" Mode="In" Type="DateTime" />
+      <Parameter Name="top" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_THONGKEDOANHTHU_KTG_TOP5" ReturnType="Collection(CMART0Model.SP_THONGKEDOANHTHU_KTG_TOP5_Result)">
+      <Parameter Name="FROM" Mode="In" Type="DateTime" />
+      <Parameter Name="TO" Mode="In" Type="DateTime" />
+      <Parameter Name="top" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_THONGKEDOANHTHU_TOP10" ReturnType="Collection(CMART0Model.SP_THONGKEDOANHTHU_TOP10_Result)">
+      <Parameter Name="NGAY" Mode="In" Type="Int32" />
+      <Parameter Name="THANG" Mode="In" Type="Int32" />
+      <Parameter Name="NAM" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_THONGKEDOANHTHU_TOP20" ReturnType="Collection(CMART0Model.SP_THONGKEDOANHTHU_TOP20_Result)">
+      <Parameter Name="NGAY" Mode="In" Type="Int32" />
+      <Parameter Name="THANG" Mode="In" Type="Int32" />
+      <Parameter Name="NAM" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_THONGKEDOANHTHU_TOP5" ReturnType="Collection(CMART0Model.SP_THONGKEDOANHTHU_TOP5_Result)">
+      <Parameter Name="NGAY" Mode="In" Type="Int32" />
+      <Parameter Name="THANG" Mode="In" Type="Int32" />
+      <Parameter Name="NAM" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProposedDetail_Insert">
+      <Parameter Name="ProductID" Mode="In" Type="String" />
+      <Parameter Name="ProposedID" Mode="In" Type="String" />
+      <Parameter Name="Quantity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SUMREPORT" ReturnType="Collection(CMART0Model.SP_SUMREPORT_Result)">
+      <Parameter Name="NGAY" Mode="In" Type="Int32" />
+      <Parameter Name="THANG" Mode="In" Type="Int32" />
+      <Parameter Name="NAM" Mode="In" Type="Int32" />
+      <Parameter Name="FROM" Mode="In" Type="DateTime" />
+      <Parameter Name="TO" Mode="In" Type="DateTime" />
+      <Parameter Name="PICK" Mode="In" Type="Int32" />
+      <Parameter Name="FILL" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ProposedDetailSearch" ReturnType="Collection(CMART0Model.usp_ProposedDetailSearch_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ProposedDetailUpdate">
+      <Parameter Name="ProductID" Mode="In" Type="String" />
+      <Parameter Name="ProposeID" Mode="In" Type="String" />
+      <Parameter Name="Quantity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ProposedDetailDeleteAll">
+      <Parameter Name="ProposedID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Headquarter_SelectProduct" ReturnType="Collection(String)">
+      <Parameter Name="ProposedID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_BranchOfficeSearch" ReturnType="Collection(CMART0Model.sp_BranchOfficeSearch_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_INSERT_HEADQUATERRECEIPTDETAIL">
+      <Parameter Name="HeadquarterID" Mode="In" Type="String" />
+      <Parameter Name="ProductID" Mode="In" Type="String" />
+      <Parameter Name="Quantity" Mode="In" Type="Int32" />
+      <Parameter Name="Price" Mode="In" Type="Double" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_LOAD_BRANCHRECEIPTDETAIL" ReturnType="Collection(CMART0Model.SP_LOAD_BRANCHRECEIPTDETAIL_Result)">
+      <Parameter Name="BranchOfficeID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UPDATE_BRANCHRECEIPTDETAIL">
+      <Parameter Name="BranchOfficeID" Mode="In" Type="String" />
+      <Parameter Name="ProductID" Mode="In" Type="String" />
+      <Parameter Name="Quantity" Mode="In" Type="Int32" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_BranchOfficeDetailSearch" ReturnType="Collection(CMART0Model.usp_BranchOfficeDetailSearch_Result)">
+      <Parameter Name="BranchOfficeID" Mode="In" Type="String" />
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UPDATE_HEADQUATERRECEIPTDETAIL">
+      <Parameter Name="HEADQUATERID" Mode="In" Type="String" />
+      <Parameter Name="ProductID" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_HeadquarterReceiptDetailSearch" ReturnType="Collection(CMART0Model.usp_HeadquarterReceiptDetailSearch_Result)">
+      <Parameter Name="TEXTSEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_HeadquarterDetailDeleteAll">
+      <Parameter Name="HeadquarterID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_BILL_PRINT" ReturnType="Collection(CMART0Model.SP_BILL_PRINT_Result)">
+      <Parameter Name="BILLID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_BILL_PRINTBILL" ReturnType="Collection(CMART0Model.SP_BILL_PRINTBILL_Result)">
+      <Parameter Name="BILLID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_BILL_PRINTBILLDETAIL" ReturnType="Collection(CMART0Model.SP_BILL_PRINTBILLDETAIL_Result)">
+      <Parameter Name="BILLID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_PRINT_BRANCHRECEIPTDETAIL" ReturnType="Collection(CMART0Model.SP_PRINT_BRANCHRECEIPTDETAIL_Result)">
+      <Parameter Name="BranchOfficeID" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Accounts" EntityType="CMART0Model.Account" />
+    <EntitySet Name="Authorities" EntityType="CMART0Model.Authority" />
+    <EntitySet Name="AuthorityNames" EntityType="CMART0Model.AuthorityName" />
+    <EntitySet Name="Bills" EntityType="CMART0Model.Bill" />
+    <EntitySet Name="BillDetails" EntityType="CMART0Model.BillDetail" />
+    <EntitySet Name="BranchOfficeReceipts" EntityType="CMART0Model.BranchOfficeReceipt" />
+    <EntitySet Name="BranchOfficeReceiptDetails" EntityType="CMART0Model.BranchOfficeReceiptDetail" />
+    <EntitySet Name="Categories" EntityType="CMART0Model.Category" />
+    <EntitySet Name="HeadquaterReceipts" EntityType="CMART0Model.HeadquaterReceipt" />
+    <EntitySet Name="HeadquaterReceiptDetails" EntityType="CMART0Model.HeadquaterReceiptDetail" />
+    <EntitySet Name="Prices" EntityType="CMART0Model.Price" />
+    <EntitySet Name="Products" EntityType="CMART0Model.Product" />
+    <EntitySet Name="Promotions" EntityType="CMART0Model.Promotion" />
+    <EntitySet Name="ProposeReceipts" EntityType="CMART0Model.ProposeReceipt" />
+    <EntitySet Name="ProposeReceiptDetails" EntityType="CMART0Model.ProposeReceiptDetail" />
+    <EntitySet Name="Suppliers" EntityType="CMART0Model.Supplier" />
+    <EntitySet Name="sysdiagrams" EntityType="CMART0Model.sysdiagram" />
+    <AssociationSet Name="FK_Authority_Account" Association="CMART0Model.FK_Authority_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Authority" EntitySet="Authorities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchOfficeReceipt_Account" Association="CMART0Model.FK_BranchOfficeReceipt_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="BranchOfficeReceipt" EntitySet="BranchOfficeReceipts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDon_TaiKhoan" Association="CMART0Model.FK_HoaDon_TaiKhoan">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuDeXuatNhapHang_TaiKhoan" Association="CMART0Model.FK_PhieuDeXuatNhapHang_TaiKhoan">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="ProposeReceipt" EntitySet="ProposeReceipts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuNhapHangTruSo_TaiKhoan" Association="CMART0Model.FK_PhieuNhapHangTruSo_TaiKhoan">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Authority_AuthorityName" Association="CMART0Model.FK_Authority_AuthorityName">
+      <End Role="AuthorityName" EntitySet="AuthorityNames" />
+      <End Role="Authority" EntitySet="Authorities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietHoaDon_HoaDon" Association="CMART0Model.FK_ChiTietHoaDon_HoaDon">
+      <End Role="Bill" EntitySet="Bills" />
+      <End Role="BillDetail" EntitySet="BillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietHoaDon_SanPham" Association="CMART0Model.FK_ChiTietHoaDon_SanPham">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="BillDetail" EntitySet="BillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchOfficeReceipt_HeadquaterReceipt" Association="CMART0Model.FK_BranchOfficeReceipt_HeadquaterReceipt">
+      <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipts" />
+      <End Role="BranchOfficeReceipt" EntitySet="BranchOfficeReceipts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchOfficeReceiptDetail_BranchOfficeReceipt" Association="CMART0Model.FK_BranchOfficeReceiptDetail_BranchOfficeReceipt">
+      <End Role="BranchOfficeReceipt" EntitySet="BranchOfficeReceipts" />
+      <End Role="BranchOfficeReceiptDetail" EntitySet="BranchOfficeReceiptDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchOfficeReceiptDetail_Product" Association="CMART0Model.FK_BranchOfficeReceiptDetail_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="BranchOfficeReceiptDetail" EntitySet="BranchOfficeReceiptDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="CMART0Model.FK_SanPham_LoaiSanPham">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo" Association="CMART0Model.FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo">
+      <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipts" />
+      <End Role="HeadquaterReceiptDetail" EntitySet="HeadquaterReceiptDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang" Association="CMART0Model.FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang">
+      <End Role="ProposeReceipt" EntitySet="ProposeReceipts" />
+      <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gia_SanPham" Association="CMART0Model.FK_Gia_SanPham">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Price" EntitySet="Prices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietPhieuDeXuatNhapHang_SanPham" Association="CMART0Model.FK_ChiTietPhieuDeXuatNhapHang_SanPham">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProposeReceiptDetail" EntitySet="ProposeReceiptDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_NhaCungCap" Association="CMART0Model.FK_SanPham_NhaCungCap">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThongTinKhuyenMai_SanPham" Association="CMART0Model.FK_ThongTinKhuyenMai_SanPham">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Promotion" EntitySet="Promotions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietPhieuDeXuatNhapHang_PhieuDeXuatNhapHang" Association="CMART0Model.FK_ChiTietPhieuDeXuatNhapHang_PhieuDeXuatNhapHang">
+      <End Role="ProposeReceipt" EntitySet="ProposeReceipts" />
+      <End Role="ProposeReceiptDetail" EntitySet="ProposeReceiptDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuDeXuatNhapHang_NhaCungCap" Association="CMART0Model.FK_PhieuDeXuatNhapHang_NhaCungCap">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="ProposeReceipt" EntitySet="ProposeReceipts" />
+    </AssociationSet>
+    <FunctionImport Name="SP_PRINT_Proposed" ReturnType="Collection(CMART0Model.SP_PRINT_Proposed_Result)">
+      <Parameter Name="ProposedID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_PRINT_Headquarter" ReturnType="Collection(CMART0Model.SP_PRINT_Headquarter_Result)">
+      <Parameter Name="HeadquarterID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_INVOICE_PRINT" ReturnType="Collection(CMART0Model.SP_INVOICE_PRINT_Result)">
+      <Parameter Name="BILLID" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="usp_AccountSearch_Result">
+    <Property Type="String" Name="AccountID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="CMND" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Authority" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="usp_Bill_Search_Result">
+    <Property Type="String" Name="BillID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Int32" Name="POS" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="false" />
+    <Property Type="Int32" Name="TotalQuantity" Nullable="false" />
+    <Property Type="Double" Name="InputMoney" Nullable="false" />
+    <Property Type="Double" Name="OutputMoney" Nullable="false" />
+    <Property Type="Double" Name="OutputMoney1" Nullable="false" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="usp_Bill_SelectAll_Result">
+    <Property Type="String" Name="BillID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Int32" Name="POS" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="false" />
+    <Property Type="Int32" Name="TotalQuantity" Nullable="false" />
+    <Property Type="Double" Name="InputMoney" Nullable="false" />
+    <Property Type="Double" Name="OutputMoney" Nullable="false" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="usp_BranchOfficeSearch_Result">
+    <Property Type="String" Name="BranchOfficeID" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="HeadquaterID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="Date" Nullable="false" />
+    <Property Type="String" Name="Branch" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="AccountID" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="usp_Bill_Search_BillId_Result">
+    <Property Type="String" Name="BillID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Int32" Name="POS" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="false" />
+    <Property Type="Int32" Name="TotalQuantity" Nullable="false" />
+    <Property Type="Double" Name="InputMoney" Nullable="false" />
+    <Property Type="Double" Name="OutputMoney" Nullable="false" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="usp_Bill_Search_FullName_Result">
+    <Property Type="String" Name="BillID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Int32" Name="POS" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="false" />
+    <Property Type="Int32" Name="TotalQuantity" Nullable="false" />
+    <Property Type="Double" Name="InputMoney" Nullable="false" />
+    <Property Type="Double" Name="OutputMoney" Nullable="false" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="usp_Bill_Search_Inputmoney_Result">
+    <Property Type="String" Name="BillID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Int32" Name="POS" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="false" />
+    <Property Type="Int32" Name="TotalQuantity" Nullable="false" />
+    <Property Type="Double" Name="InputMoney" Nullable="false" />
+    <Property Type="Double" Name="OutputMoney" Nullable="false" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="usp_Bill_Search_POS_Result">
+    <Property Type="String" Name="BillID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Int32" Name="POS" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="false" />
+    <Property Type="Int32" Name="TotalQuantity" Nullable="false" />
+    <Property Type="Double" Name="InputMoney" Nullable="false" />
+    <Property Type="Double" Name="OutputMoney" Nullable="false" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="usp_Bill_Search_SaleDate_Result">
+    <Property Type="String" Name="BillID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Int32" Name="POS" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="false" />
+    <Property Type="Int32" Name="TotalQuantity" Nullable="false" />
+    <Property Type="Double" Name="InputMoney" Nullable="false" />
+    <Property Type="Double" Name="OutputMoney" Nullable="false" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="usp_Bill_Search_TotalAmount_Result">
+    <Property Type="String" Name="BillID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Int32" Name="POS" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="false" />
+    <Property Type="Int32" Name="TotalQuantity" Nullable="false" />
+    <Property Type="Double" Name="InputMoney" Nullable="false" />
+    <Property Type="Double" Name="OutputMoney" Nullable="false" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="usp_Bill_Search_TotalQuantity_Result">
+    <Property Type="String" Name="BillID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Int32" Name="POS" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="false" />
+    <Property Type="Int32" Name="TotalQuantity" Nullable="false" />
+    <Property Type="Double" Name="InputMoney" Nullable="false" />
+    <Property Type="Double" Name="OutputMoney" Nullable="false" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="PROMOTION_SEARCH_Result">
+    <Property Type="String" Name="PromotionID" Nullable="false" MaxLength="13" />
+    <Property Type="Double" Name="PromotionPrice" Nullable="false" />
+    <Property Type="DateTime" Name="StartDate" Nullable="false" />
+    <Property Type="String" Name="Content" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Image" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ProductID" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="SP_SEARCH_PRODUCT_Result">
+    <Property Type="String" Name="ProductID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Image" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="SupplierName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_SELECTALL_PRODUCT_Result">
+    <Property Type="String" Name="ProductID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Image" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="SupplierName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="usp_CategorySearch_Result">
+    <Property Type="String" Name="CategoryID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="usp_PriceSearch_Result">
+    <Property Type="String" Name="ProductID" Nullable="false" MaxLength="10" />
+    <Property Type="Double" Name="Price" Nullable="false" />
+    <Property Type="DateTime" Name="EffectiveDay" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PROMOTION_SELECT_Result">
+    <Property Type="String" Name="PromotionID" Nullable="false" MaxLength="13" />
+    <Property Type="Double" Name="PromotionPrice" Nullable="false" />
+    <Property Type="DateTime" Name="StartDate" Nullable="false" />
+    <Property Type="String" Name="Content" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Image" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="usp_HEADQUATERRECEIPTSearch_Result">
+    <Property Type="String" Name="HeadquaterID" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="ProposeID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="Date" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="false" />
+    <Property Type="String" Name="AccountID" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="usp_Bill_Insert_returnid_Result">
+    <Property Type="String" Name="BillID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Int32" Name="POS" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="false" />
+    <Property Type="Int32" Name="TotalQuantity" Nullable="false" />
+    <Property Type="Double" Name="InputMoney" Nullable="false" />
+    <Property Type="Double" Name="OutputMoney" Nullable="false" />
+    <Property Type="String" Name="AccountID" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="usp_SupplierSearch_Result">
+    <Property Type="String" Name="SupplierID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="usp_ProposedSearch_Result">
+    <Property Type="String" Name="ProposeID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="ProposeDate" Nullable="false" />
+    <Property Type="String" Name="SupplierID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="AccountID" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="SP_THONGKEDOANHTHU_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Double" Name="Price" Nullable="false" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_THONGKEDOANHTHU_KTG_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Double" Name="Price" Nullable="false" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_THONGKEDOANHTHU_KTG_TOP10_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Double" Name="Price" Nullable="false" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_THONGKEDOANHTHU_KTG_TOP20_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Double" Name="Price" Nullable="false" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_THONGKEDOANHTHU_KTG_TOP5_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Double" Name="Price" Nullable="false" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_THONGKEDOANHTHU_TOP10_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Double" Name="Price" Nullable="false" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_THONGKEDOANHTHU_TOP20_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Double" Name="Price" Nullable="false" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_THONGKEDOANHTHU_TOP5_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Double" Name="Price" Nullable="false" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_SUMREPORT_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Double" Name="Price" Nullable="false" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="usp_ProposedDetailSearch_Result">
+    <Property Type="String" Name="ProductID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="ProposeID" Nullable="false" MaxLength="13" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_BranchOfficeSearch_Result">
+    <Property Type="String" Name="BranchOfficeID" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="HeadquaterID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="Date" Nullable="false" />
+    <Property Type="String" Name="Branch" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_LOAD_BRANCHRECEIPTDETAIL_Result">
+    <Property Type="String" Name="ProductID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="usp_BranchOfficeDetailSearch_Result">
+    <Property Type="String" Name="ProductID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="usp_HeadquarterReceiptDetailSearch_Result">
+    <Property Type="String" Name="HeadquaterID" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="ProductID" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Double" Name="Price" Nullable="false" />
+    <Property Type="DateTime" Name="ExpiryDate" Nullable="true" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_BILL_PRINT_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Double" Name="Price" Nullable="false" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_BILL_PRINTBILL_Result">
+    <Property Type="String" Name="BillID" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="BRANCH" Nullable="true" MaxLength="1" />
+    <Property Type="Int32" Name="POS" Nullable="false" />
+    <Property Type="Double" Name="InputMoney" Nullable="false" />
+    <Property Type="Double" Name="OutputMoney" Nullable="false" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="false" />
+    <Property Type="Int32" Name="TotalQuantity" Nullable="false" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_BILL_PRINTBILLDETAIL_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Double" Name="Price" Nullable="false" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_PRINT_BRANCHRECEIPTDETAIL_Result">
+    <Property Type="String" Name="Column1" Nullable="true" MaxLength="13" />
+    <Property Type="String" Name="BranchOfficeID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="Date" Nullable="false" />
+    <Property Type="String" Name="Branch" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ProductID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CMND" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Authorities" Relationship="CMART0Model.FK_Authority_Account" FromRole="Account" ToRole="Authority" />
+    <NavigationProperty Name="BranchOfficeReceipts" Relationship="CMART0Model.FK_BranchOfficeReceipt_Account" FromRole="Account" ToRole="BranchOfficeReceipt" />
+    <NavigationProperty Name="Bills" Relationship="CMART0Model.FK_HoaDon_TaiKhoan" FromRole="Account" ToRole="Bill" />
+    <NavigationProperty Name="ProposeReceipts" Relationship="CMART0Model.FK_PhieuDeXuatNhapHang_TaiKhoan" FromRole="Account" ToRole="ProposeReceipt" />
+    <NavigationProperty Name="HeadquaterReceipts" Relationship="CMART0Model.FK_PhieuNhapHangTruSo_TaiKhoan" FromRole="Account" ToRole="HeadquaterReceipt" />
+  </EntityType>
+  <EntityType Name="Authority">
+    <Key>
+      <PropertyRef Name="AccountID" />
+      <PropertyRef Name="NameOfAuthority" />
+    </Key>
+    <Property Name="AccountID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NameOfAuthority" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Create" Type="Boolean" Nullable="false" />
+    <Property Name="Update" Type="Boolean" Nullable="false" />
+    <Property Name="Delete" Type="Boolean" Nullable="false" />
+    <Property Name="View" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="CMART0Model.FK_Authority_Account" FromRole="Authority" ToRole="Account" />
+    <NavigationProperty Name="AuthorityName" Relationship="CMART0Model.FK_Authority_AuthorityName" FromRole="Authority" ToRole="AuthorityName" />
+  </EntityType>
+  <EntityType Name="AuthorityName">
+    <Key>
+      <PropertyRef Name="NameOfAuthority" />
+    </Key>
+    <Property Name="NameOfAuthority" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Authorities" Relationship="CMART0Model.FK_Authority_AuthorityName" FromRole="AuthorityName" ToRole="Authority" />
+  </EntityType>
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="BillID" />
+    </Key>
+    <Property Name="BillID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="SaleDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="POS" Type="Int32" Nullable="false" />
+    <Property Name="TotalAmount" Type="Double" Nullable="false" />
+    <Property Name="TotalQuantity" Type="Int32" Nullable="false" />
+    <Property Name="InputMoney" Type="Double" Nullable="false" />
+    <Property Name="OutputMoney" Type="Double" Nullable="false" />
+    <Property Name="AccountID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Account" Relationship="CMART0Model.FK_HoaDon_TaiKhoan" FromRole="Bill" ToRole="Account" />
+    <NavigationProperty Name="BillDetails" Relationship="CMART0Model.FK_ChiTietHoaDon_HoaDon" FromRole="Bill" ToRole="BillDetail" />
+  </EntityType>
+  <EntityType Name="BillDetail">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="BillID" />
+    </Key>
+    <Property Name="ProductID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="BillID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Bill" Relationship="CMART0Model.FK_ChiTietHoaDon_HoaDon" FromRole="BillDetail" ToRole="Bill" />
+    <NavigationProperty Name="Product" Relationship="CMART0Model.FK_ChiTietHoaDon_SanPham" FromRole="BillDetail" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="BranchOfficeReceipt">
+    <Key>
+      <PropertyRef Name="BranchOfficeID" />
+    </Key>
+    <Property Name="BranchOfficeID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="HeadquaterID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Branch" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AccountID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Account" Relationship="CMART0Model.FK_BranchOfficeReceipt_Account" FromRole="BranchOfficeReceipt" ToRole="Account" />
+    <NavigationProperty Name="HeadquaterReceipt" Relationship="CMART0Model.FK_BranchOfficeReceipt_HeadquaterReceipt" FromRole="BranchOfficeReceipt" ToRole="HeadquaterReceipt" />
+    <NavigationProperty Name="BranchOfficeReceiptDetails" Relationship="CMART0Model.FK_BranchOfficeReceiptDetail_BranchOfficeReceipt" FromRole="BranchOfficeReceipt" ToRole="BranchOfficeReceiptDetail" />
+  </EntityType>
+  <EntityType Name="BranchOfficeReceiptDetail">
+    <Key>
+      <PropertyRef Name="BranchOfficeID" />
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="BranchOfficeID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="ProductID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BranchOfficeReceipt" Relationship="CMART0Model.FK_BranchOfficeReceiptDetail_BranchOfficeReceipt" FromRole="BranchOfficeReceiptDetail" ToRole="BranchOfficeReceipt" />
+    <NavigationProperty Name="Product" Relationship="CMART0Model.FK_BranchOfficeReceiptDetail_Product" FromRole="BranchOfficeReceiptDetail" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Int32" />
+    <NavigationProperty Name="Products" Relationship="CMART0Model.FK_SanPham_LoaiSanPham" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="HeadquaterReceipt">
+    <Key>
+      <PropertyRef Name="HeadquaterID" />
+    </Key>
+    <Property Name="HeadquaterID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="ProposeID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TotalAmount" Type="Double" Nullable="false" />
+    <Property Name="AccountID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Account" Relationship="CMART0Model.FK_PhieuNhapHangTruSo_TaiKhoan" FromRole="HeadquaterReceipt" ToRole="Account" />
+    <NavigationProperty Name="BranchOfficeReceipts" Relationship="CMART0Model.FK_BranchOfficeReceipt_HeadquaterReceipt" FromRole="HeadquaterReceipt" ToRole="BranchOfficeReceipt" />
+    <NavigationProperty Name="HeadquaterReceiptDetails" Relationship="CMART0Model.FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo" FromRole="HeadquaterReceipt" ToRole="HeadquaterReceiptDetail" />
+    <NavigationProperty Name="ProposeReceipt" Relationship="CMART0Model.FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang" FromRole="HeadquaterReceipt" ToRole="ProposeReceipt" />
+  </EntityType>
+  <EntityType Name="HeadquaterReceiptDetail">
+    <Key>
+      <PropertyRef Name="HeadquaterID" />
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="HeadquaterID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="ProductID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <Property Name="ExpiryDate" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HeadquaterReceipt" Relationship="CMART0Model.FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo" FromRole="HeadquaterReceiptDetail" ToRole="HeadquaterReceipt" />
+  </EntityType>
+  <EntityType Name="Price">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="Price1" />
+      <PropertyRef Name="EffectiveDay" />
+    </Key>
+    <Property Name="ProductID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Price1" Type="Double" Nullable="false" />
+    <Property Name="EffectiveDay" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Product" Relationship="CMART0Model.FK_Gia_SanPham" FromRole="Price" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SupplierID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BillDetails" Relationship="CMART0Model.FK_ChiTietHoaDon_SanPham" FromRole="Product" ToRole="BillDetail" />
+    <NavigationProperty Name="BranchOfficeReceiptDetails" Relationship="CMART0Model.FK_BranchOfficeReceiptDetail_Product" FromRole="Product" ToRole="BranchOfficeReceiptDetail" />
+    <NavigationProperty Name="Category" Relationship="CMART0Model.FK_SanPham_LoaiSanPham" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Prices" Relationship="CMART0Model.FK_Gia_SanPham" FromRole="Product" ToRole="Price" />
+    <NavigationProperty Name="ProposeReceiptDetails" Relationship="CMART0Model.FK_ChiTietPhieuDeXuatNhapHang_SanPham" FromRole="Product" ToRole="ProposeReceiptDetail" />
+    <NavigationProperty Name="Supplier" Relationship="CMART0Model.FK_SanPham_NhaCungCap" FromRole="Product" ToRole="Supplier" />
+    <NavigationProperty Name="Promotions" Relationship="CMART0Model.FK_ThongTinKhuyenMai_SanPham" FromRole="Product" ToRole="Promotion" />
+  </EntityType>
+  <EntityType Name="Promotion">
+    <Key>
+      <PropertyRef Name="PromotionID" />
+    </Key>
+    <Property Name="PromotionID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="PromotionPrice" Type="Double" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Content" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Product" Relationship="CMART0Model.FK_ThongTinKhuyenMai_SanPham" FromRole="Promotion" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ProposeReceipt">
+    <Key>
+      <PropertyRef Name="ProposeID" />
+    </Key>
+    <Property Name="ProposeID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="ProposeDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SupplierID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="AccountID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Account" Relationship="CMART0Model.FK_PhieuDeXuatNhapHang_TaiKhoan" FromRole="ProposeReceipt" ToRole="Account" />
+    <NavigationProperty Name="HeadquaterReceipts" Relationship="CMART0Model.FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang" FromRole="ProposeReceipt" ToRole="HeadquaterReceipt" />
+    <NavigationProperty Name="ProposeReceiptDetails" Relationship="CMART0Model.FK_ChiTietPhieuDeXuatNhapHang_PhieuDeXuatNhapHang" FromRole="ProposeReceipt" ToRole="ProposeReceiptDetail" />
+    <NavigationProperty Name="Supplier" Relationship="CMART0Model.FK_PhieuDeXuatNhapHang_NhaCungCap" FromRole="ProposeReceipt" ToRole="Supplier" />
+  </EntityType>
+  <EntityType Name="ProposeReceiptDetail">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="ProposeID" />
+    </Key>
+    <Property Name="ProductID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ProposeID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="CMART0Model.FK_ChiTietPhieuDeXuatNhapHang_SanPham" FromRole="ProposeReceiptDetail" ToRole="Product" />
+    <NavigationProperty Name="ProposeReceipt" Relationship="CMART0Model.FK_ChiTietPhieuDeXuatNhapHang_PhieuDeXuatNhapHang" FromRole="ProposeReceiptDetail" ToRole="ProposeReceipt" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="SupplierID" />
+    </Key>
+    <Property Name="SupplierID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="CMART0Model.FK_SanPham_NhaCungCap" FromRole="Supplier" ToRole="Product" />
+    <NavigationProperty Name="ProposeReceipts" Relationship="CMART0Model.FK_PhieuDeXuatNhapHang_NhaCungCap" FromRole="Supplier" ToRole="ProposeReceipt" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Authority_Account">
+    <End Type="CMART0Model.Account" Role="Account" Multiplicity="1" />
+    <End Type="CMART0Model.Authority" Role="Authority" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="Authority">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchOfficeReceipt_Account">
+    <End Type="CMART0Model.Account" Role="Account" Multiplicity="1" />
+    <End Type="CMART0Model.BranchOfficeReceipt" Role="BranchOfficeReceipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="BranchOfficeReceipt">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDon_TaiKhoan">
+    <End Type="CMART0Model.Account" Role="Account" Multiplicity="1" />
+    <End Type="CMART0Model.Bill" Role="Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuDeXuatNhapHang_TaiKhoan">
+    <End Type="CMART0Model.Account" Role="Account" Multiplicity="1" />
+    <End Type="CMART0Model.ProposeReceipt" Role="ProposeReceipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="ProposeReceipt">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuNhapHangTruSo_TaiKhoan">
+    <End Type="CMART0Model.Account" Role="Account" Multiplicity="1" />
+    <End Type="CMART0Model.HeadquaterReceipt" Role="HeadquaterReceipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="HeadquaterReceipt">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Authority_AuthorityName">
+    <End Type="CMART0Model.AuthorityName" Role="AuthorityName" Multiplicity="1" />
+    <End Type="CMART0Model.Authority" Role="Authority" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AuthorityName">
+        <PropertyRef Name="NameOfAuthority" />
+      </Principal>
+      <Dependent Role="Authority">
+        <PropertyRef Name="NameOfAuthority" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietHoaDon_HoaDon">
+    <End Type="CMART0Model.Bill" Role="Bill" Multiplicity="1" />
+    <End Type="CMART0Model.BillDetail" Role="BillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill">
+        <PropertyRef Name="BillID" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="BillID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietHoaDon_SanPham">
+    <End Type="CMART0Model.Product" Role="Product" Multiplicity="1" />
+    <End Type="CMART0Model.BillDetail" Role="BillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchOfficeReceipt_HeadquaterReceipt">
+    <End Type="CMART0Model.HeadquaterReceipt" Role="HeadquaterReceipt" Multiplicity="1" />
+    <End Type="CMART0Model.BranchOfficeReceipt" Role="BranchOfficeReceipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HeadquaterReceipt">
+        <PropertyRef Name="HeadquaterID" />
+      </Principal>
+      <Dependent Role="BranchOfficeReceipt">
+        <PropertyRef Name="HeadquaterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchOfficeReceiptDetail_BranchOfficeReceipt">
+    <End Type="CMART0Model.BranchOfficeReceipt" Role="BranchOfficeReceipt" Multiplicity="1" />
+    <End Type="CMART0Model.BranchOfficeReceiptDetail" Role="BranchOfficeReceiptDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchOfficeReceipt">
+        <PropertyRef Name="BranchOfficeID" />
+      </Principal>
+      <Dependent Role="BranchOfficeReceiptDetail">
+        <PropertyRef Name="BranchOfficeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchOfficeReceiptDetail_Product">
+    <End Type="CMART0Model.Product" Role="Product" Multiplicity="1" />
+    <End Type="CMART0Model.BranchOfficeReceiptDetail" Role="BranchOfficeReceiptDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="BranchOfficeReceiptDetail">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_LoaiSanPham">
+    <End Type="CMART0Model.Category" Role="Category" Multiplicity="1" />
+    <End Type="CMART0Model.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo">
+    <End Type="CMART0Model.HeadquaterReceipt" Role="HeadquaterReceipt" Multiplicity="1" />
+    <End Type="CMART0Model.HeadquaterReceiptDetail" Role="HeadquaterReceiptDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HeadquaterReceipt">
+        <PropertyRef Name="HeadquaterID" />
+      </Principal>
+      <Dependent Role="HeadquaterReceiptDetail">
+        <PropertyRef Name="HeadquaterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang">
+    <End Type="CMART0Model.ProposeReceipt" Role="ProposeReceipt" Multiplicity="1" />
+    <End Type="CMART0Model.HeadquaterReceipt" Role="HeadquaterReceipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProposeReceipt">
+        <PropertyRef Name="ProposeID" />
+      </Principal>
+      <Dependent Role="HeadquaterReceipt">
+        <PropertyRef Name="ProposeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gia_SanPham">
+    <End Type="CMART0Model.Product" Role="Product" Multiplicity="1" />
+    <End Type="CMART0Model.Price" Role="Price" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Price">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietPhieuDeXuatNhapHang_SanPham">
+    <End Type="CMART0Model.Product" Role="Product" Multiplicity="1" />
+    <End Type="CMART0Model.ProposeReceiptDetail" Role="ProposeReceiptDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProposeReceiptDetail">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_NhaCungCap">
+    <End Type="CMART0Model.Supplier" Role="Supplier" Multiplicity="1" />
+    <End Type="CMART0Model.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="SupplierID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="SupplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThongTinKhuyenMai_SanPham">
+    <End Type="CMART0Model.Product" Role="Product" Multiplicity="1" />
+    <End Type="CMART0Model.Promotion" Role="Promotion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Promotion">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietPhieuDeXuatNhapHang_PhieuDeXuatNhapHang">
+    <End Type="CMART0Model.ProposeReceipt" Role="ProposeReceipt" Multiplicity="1" />
+    <End Type="CMART0Model.ProposeReceiptDetail" Role="ProposeReceiptDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProposeReceipt">
+        <PropertyRef Name="ProposeID" />
+      </Principal>
+      <Dependent Role="ProposeReceiptDetail">
+        <PropertyRef Name="ProposeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuDeXuatNhapHang_NhaCungCap">
+    <End Type="CMART0Model.Supplier" Role="Supplier" Multiplicity="1" />
+    <End Type="CMART0Model.ProposeReceipt" Role="ProposeReceipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="SupplierID" />
+      </Principal>
+      <Dependent Role="ProposeReceipt">
+        <PropertyRef Name="SupplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="SP_PRINT_Proposed_Result">
+    <Property Type="String" Name="ProposeID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="ProposeDate" Nullable="false" />
+    <Property Type="String" Name="SupplierID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="AccountID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="ProductID" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_PRINT_Headquarter_Result">
+    <Property Type="String" Name="HeadquaterID" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="ProposeID" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="Date" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="false" />
+    <Property Type="String" Name="AccountID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="ProductID" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Double" Name="Price" Nullable="false" />
+    <Property Type="DateTime" Name="ExpiryDate" Nullable="true" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_INVOICE_PRINT_Result">
+    <Property Type="String" Name="BillID" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="BRANCH" Nullable="true" MaxLength="1" />
+    <Property Type="Int32" Name="POS" Nullable="false" />
+    <Property Type="String" Name="AccountID" Nullable="false" MaxLength="10" />
+    <Property Type="Double" Name="InputMoney" Nullable="false" />
+    <Property Type="Double" Name="OutputMoney" Nullable="false" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="false" />
+    <Property Type="Int32" Name="TotalQuantity" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Double" Name="Price" Nullable="false" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+  </ComplexType>
+</Schema>
