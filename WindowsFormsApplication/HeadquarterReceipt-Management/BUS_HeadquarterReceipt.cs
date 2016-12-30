@@ -3,27 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WindowsFormsApplication.Account_Management
+namespace WindowsFormsApplication.HeadquarterReceipt_Management
 {
-    class BUS_Account
+    class BUS_HeadquarterReceipt
     {
         CMART0Entities db = new CMART0Entities();
 
-        // LOAD LIST
-        public List<Account> LoadListAccount()
+        //LOAD PROPOSED ID
+        public List<ProposeReceipt> LoadProposed()
+        {
+            var proposed = db.ProposeReceipts.ToList();
+            return proposed;
+        }
+
+        //LOAD HEADQUARTER
+        public List<HeadquaterReceipt> LoadHeadquarterR()
         {
             CMART0Entities db = new CMART0Entities();
-            List<Account> lst = db.Accounts.ToList();
-            return lst;
+            return db.HeadquaterReceipts.ToList();
         }
 
         // INSERT
-        public bool InsertAccount(string accountID, string fullName, string address, string phoneNumber, string cMND, string userName, string password)
+        public bool InsertHeadquarter(string proposedID,double totalAmount, string accountID)
         {
             bool flag = false;
             try
             {
-                db.SP_INSERT_ACCOUNTID(fullName, address, phoneNumber, cMND, userName, password);
+                db.SP_INSERT_HEADQUATER(proposedID,totalAmount, accountID);
                 db.SaveChanges();
                 flag = true;
             }
@@ -35,12 +41,12 @@ namespace WindowsFormsApplication.Account_Management
         }
 
         //UPDATE
-        public bool UpdateAccount(string account, string fullName, string address, string phoneNumber, string cMND, string userName, string password)
+        public bool UpdateAccount(string headID, string proposedID, double totalAmount, string accountID)
         {
             bool flag = false;
             try
             {
-                db.usp_AccountUpdate(account, fullName, address, phoneNumber, cMND, userName, password);
+                db.SP_UPDATE_HEADQUATERRECEIPT(headID, proposedID, totalAmount, accountID);
                 flag = true;
             }
             catch
@@ -51,14 +57,14 @@ namespace WindowsFormsApplication.Account_Management
         }
 
         //DELETE
-        public bool Delete(string accountID)
+        public bool Delete(string headquarterID)
         {
             bool flag = false;
             CMART0Entities db = new CMART0Entities();
-            Account acc = db.Accounts.Single(x => x.AccountID == accountID);
+            HeadquaterReceipt headquarter = db.HeadquaterReceipts.Single(x => x.HeadquaterID == headquarterID);
             try
             {
-                db.Accounts.Remove(acc);
+                db.DeleteObject(headquarter);
                 //db.usp_Account_Delete(accountID);
                 db.SaveChanges();
                 flag = true;
@@ -70,10 +76,11 @@ namespace WindowsFormsApplication.Account_Management
             return flag;
         }
 
-        public List<usp_AccountSearch_Result> Search (string input)
+        //SEARCH
+        public List<usp_HEADQUATERRECEIPTSearch_Result> Search(string input)
         {
             CMART0Entities db = new CMART0Entities();
-            return db.usp_AccountSearch(input).ToList();
+            return db.usp_HEADQUATERRECEIPTSearch(input).ToList();
         }
     }
 }

@@ -351,7 +351,6 @@
             this.btnStatistic.Size = new System.Drawing.Size(83, 80);
             this.btnStatistic.TabIndex = 14;
             this.btnStatistic.UseVisualStyleBackColor = false;
-            this.btnStatistic.Click += new System.EventHandler(this.btnStatistic_Click);
             // 
             // lblLogout
             // 
@@ -379,7 +378,6 @@
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GUI_MainFrm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GUI_MainFrm";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
