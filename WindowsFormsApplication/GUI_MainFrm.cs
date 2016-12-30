@@ -13,7 +13,6 @@ using WindowsFormsApplication.Supplier_Management;
 using WindowsFormsApplication.ProposeReceipt_Management;
 using WindowsFormsApplication.HeadquarterReceipt_Management;
 using WindowsFormsApplication.Bill_Management;
-using WindowsFormsApplication.Statistic_Management;
 namespace WindowsFormsApplication
 {
     public partial class GUI_MainFrm : Form
@@ -186,12 +185,6 @@ namespace WindowsFormsApplication
             GUI_Propose proposed = new GUI_Propose(getAccount);
             proposed.Closed += (s, args) => this.Close();
             proposed.ShowDialog();
-        }
-
-        private void btnStatistic_Click(object sender, EventArgs e)
-        {
-            GUI_ManageStatistic f = new GUI_ManageStatistic();
-            f.ShowDialog();
         }
 
      

@@ -1,0 +1,151 @@
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe.config
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.pdb
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\EntityFramework.dll
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\EntityFramework.xml
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.csprojResolveAssemblyReference.cache
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Form0.resources
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.GUI_MainFrm.resources
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Properties.Resources.resources
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.csproj.GenerateResource.Cache
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.exe
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.pdb
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Account_Management.GUI_Account.resources
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Account_Management.GUI_Authority.resources
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.GUI_LoginFrm.resources
+D:\Sang's Document\Computer Science\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Category_Management.GUI_Category.resources
+E:\MOP_CMU\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe.config
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.exe
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.pdb
+E:\MOP_CMU\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe
+E:\MOP_CMU\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.pdb
+E:\MOP_CMU\WindowsFormsApplication\bin\Debug\EntityFramework.dll
+E:\MOP_CMU\WindowsFormsApplication\bin\Debug\EntityFramework.xml
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.csprojResolveAssemblyReference.cache
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Account_Management.GUI_Account.resources
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Account_Management.GUI_Authority.resources
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Category_Management.GUI_Category.resources
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Form0.resources
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.GUI_LoginFrm.resources
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.GUI_MainFrm.resources
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Properties.Resources.resources
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.csproj.GenerateResource.Cache
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.BRANCHOFFICERECEIPT.GUI_BRANCHOFFICERECEIPT.resources
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.PRICE.GUI_PRICE.resources
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.HeadquarterReceipt.GUI_HEADQUATERCEREIPT.resources
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Promotion_Management.GUI_Promotion.resources
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Bill_Management.GUI_InsertBill.resources
+E:\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Bill_Management.GUI_ManageBill.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe.config
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.exe
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.pdb
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.pdb
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\bin\Debug\EntityFramework.dll
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\bin\Debug\EntityFramework.xml
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.csprojResolveAssemblyReference.cache
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Account_Management.GUI_Account.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Account_Management.GUI_Authority.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Category_Management.GUI_Category.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Form0.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.GUI_LoginFrm.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.GUI_MainFrm.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.PRICE.GUI_PRICE.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Product_Management.frmGUI.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Promotion_Management.GUI_Promotion.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Properties.Resources.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.csproj.GenerateResource.Cache
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Promotion_Test.GUI_Promote.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Supplier_Management.GUI_Supplier.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.ProposeReceipt_Management.GUI_Propose.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.ProposeReceipt_Management.GUI_ProposedDetail.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.HeadquarterReceipt_Management.GUI_HeadquarterReceipt.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.HeadquarterReceipt_Management.GUI_HeadquarterReceiptDetail.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Bill_Management.GUI_InsertBill.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Bill_Management.GUI_ManageBill.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.BranchOfficeReceipt_Management.GUI_BRANCHOFFICERECEIPT.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.BranchOfficeReceipt_Management.GUI_BRANCHOFFICERECEIPTDETAIL.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Bill_Management.GUI_Review.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.ProposeReceipt_Management.GUI_PrintProposed.resources
+D:\Sang's Document\Computer Science\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.HeadquarterReceipt_Management.GUI_PrintHeadquarter.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe.config
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.exe
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.pdb
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.csprojResolveAssemblyReference.cache
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Account_Management.GUI_Account.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Account_Management.GUI_Authority.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Bill_Management.GUI_InsertBill.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Bill_Management.GUI_ManageBill.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Bill_Management.GUI_Review.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.BranchOfficeReceipt_Management.GUI_BRANCHOFFICERECEIPT.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.BranchOfficeReceipt_Management.GUI_BRANCHOFFICERECEIPTDETAIL.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Category_Management.GUI_Category.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Form0.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.GUI_LoginFrm.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.GUI_MainFrm.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.HeadquarterReceipt_Management.GUI_HeadquarterReceipt.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.HeadquarterReceipt_Management.GUI_HeadquarterReceiptDetail.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.HeadquarterReceipt_Management.GUI_PrintHeadquarter.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.PRICE.GUI_PRICE.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Product_Management.frmGUI.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Promotion_Test.GUI_Promote.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Properties.Resources.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.ProposeReceipt_Management.GUI_PrintProposed.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.ProposeReceipt_Management.GUI_Propose.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.ProposeReceipt_Management.GUI_ProposedDetail.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Supplier_Management.GUI_Supplier.resources
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.csproj.GenerateResource.Cache
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.pdb
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\bin\Debug\EntityFramework.dll
+D:\Sang's Document\Computer Science\C-Mart\MOP_CMU\WindowsFormsApplication\bin\Debug\EntityFramework.xml
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe.config
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.exe
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.pdb
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.pdb
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.ReportSource.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.Shared.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.Windows.Forms.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\EntityFramework.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\FlashControlV71.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.ReportAppServer.DataDefModel.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.ReportAppServer.ClientDoc.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.ReportAppServer.Controllers.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.ReportAppServer.CommLayer.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.ReportAppServer.Prompting.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\ShockwaveFlashObjects.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\stdole.dll
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\bin\Debug\EntityFramework.xml
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.csprojResolveAssemblyReference.cache
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Account_Management.GUI_Account.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Account_Management.GUI_Authority.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Bill_Management.GUI_InsertBill.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Bill_Management.GUI_ManageBill.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Bill_Management.GUI_Review.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.BranchOfficeReceipt_Management.GUI_BRANCHOFFICERECEIPT.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.BranchOfficeReceipt_Management.GUI_BRANCHOFFICERECEIPTDETAIL.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Category_Management.GUI_Category.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Form0.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.GUI_LoginFrm.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.GUI_MainFrm.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.HeadquarterReceipt_Management.GUI_HeadquarterReceipt.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.HeadquarterReceipt_Management.GUI_HeadquarterReceiptDetail.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.HeadquarterReceipt_Management.GUI_PrintHeadquarter.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.PRICE.GUI_PRICE.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Product_Management.frmGUI.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Promotion_Test.GUI_Promote.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Properties.Resources.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.ProposeReceipt_Management.GUI_PrintProposed.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.ProposeReceipt_Management.GUI_Propose.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.ProposeReceipt_Management.GUI_ProposedDetail.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Supplier_Management.GUI_Supplier.resources
+D:\nam_3\MOP_CMU - Copy\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.csproj.GenerateResource.Cache
