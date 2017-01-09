@@ -13,6 +13,7 @@ using WindowsFormsApplication.Supplier_Management;
 using WindowsFormsApplication.ProposeReceipt_Management;
 using WindowsFormsApplication.HeadquarterReceipt_Management;
 using WindowsFormsApplication.Bill_Management;
+using WindowsFormsApplication.Statistic_Management;
 namespace WindowsFormsApplication
 {
     public partial class GUI_MainFrm : Form
@@ -118,13 +119,13 @@ namespace WindowsFormsApplication
 
         private void ManageCategory_Click(object sender, EventArgs e)
         {
-            GUI_Category category = new GUI_Category();
+            GUI_Category category = new GUI_Category(getAccount);
             category.ShowDialog();
         }
 
         private void btnPrice_Click(object sender, EventArgs e)
         {
-            PRICE.GUI_PRICE PRICE = new PRICE.GUI_PRICE();
+            PRICE.GUI_PRICE PRICE = new PRICE.GUI_PRICE(getAccount);
             PRICE.ShowDialog();
            
         }
@@ -155,7 +156,7 @@ namespace WindowsFormsApplication
 
         private void btnPromotion_Click(object sender, EventArgs e)
         {
-            GUI_Promote promotion = new GUI_Promote();
+            GUI_Promote promotion = new GUI_Promote(getAccount);
             promotion.ShowDialog();
         }
 
@@ -169,13 +170,13 @@ namespace WindowsFormsApplication
 
         private void btnProduct_Click(object sender, EventArgs e)
         {
-            Product_Management.frmGUI product = new Product_Management.frmGUI();
+            Product_Management.frmGUI product = new Product_Management.frmGUI(getAccount);
             product.ShowDialog();
         }
 
         private void btnSupplier_Click(object sender, EventArgs e)
         {
-            GUI_Supplier supplier = new GUI_Supplier();
+            GUI_Supplier supplier = new GUI_Supplier(getAccount);
             supplier.ShowDialog();
         }
 
@@ -185,6 +186,12 @@ namespace WindowsFormsApplication
             GUI_Propose proposed = new GUI_Propose(getAccount);
             proposed.Closed += (s, args) => this.Close();
             proposed.ShowDialog();
+        }
+
+        private void btnStatistic_Click(object sender, EventArgs e)
+        {
+            GUI_ManageStatistic f = new GUI_ManageStatistic();
+            f.ShowDialog();
         }
 
      

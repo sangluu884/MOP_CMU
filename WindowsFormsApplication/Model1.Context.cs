@@ -557,7 +557,7 @@ namespace WindowsFormsApplication
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_PRODUCT_ID_AUTO", iD);
         }
     
-        public virtual int SP_PROMOTION_INSERT(Nullable<float> promotionPrice, Nullable<System.DateTime> startDate, string content, string image, string productId)
+        public virtual int SP_PROMOTION_INSERT(Nullable<float> promotionPrice, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, string content, string image, string productId)
         {
             var promotionPriceParameter = promotionPrice.HasValue ?
                 new ObjectParameter("PromotionPrice", promotionPrice) :
@@ -566,6 +566,10 @@ namespace WindowsFormsApplication
             var startDateParameter = startDate.HasValue ?
                 new ObjectParameter("StartDate", startDate) :
                 new ObjectParameter("StartDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("EndDate", endDate) :
+                new ObjectParameter("EndDate", typeof(System.DateTime));
     
             var contentParameter = content != null ?
                 new ObjectParameter("Content", content) :
@@ -579,7 +583,7 @@ namespace WindowsFormsApplication
                 new ObjectParameter("ProductId", productId) :
                 new ObjectParameter("ProductId", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_PROMOTION_INSERT", promotionPriceParameter, startDateParameter, contentParameter, imageParameter, productIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_PROMOTION_INSERT", promotionPriceParameter, startDateParameter, endDateParameter, contentParameter, imageParameter, productIdParameter);
         }
     
         public virtual int SP_PROPOSE_ID_AUTO(ObjectParameter mahd)
@@ -897,7 +901,7 @@ namespace WindowsFormsApplication
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_HEADQUATERRECEIPT", hEADQUATERIDParameter, proposeIDParameter, totalAmountParameter, accountIDParameter);
         }
     
-        public virtual int SP_UPDATE_HEADQUATERRECEIPTDETAIL(string hEADQUATERID, string productID, string status)
+        public virtual int SP_UPDATE_HEADQUATERRECEIPTDETAIL(string hEADQUATERID, string productID, Nullable<int> quantity, Nullable<double> price, string status)
         {
             var hEADQUATERIDParameter = hEADQUATERID != null ?
                 new ObjectParameter("HEADQUATERID", hEADQUATERID) :
@@ -907,11 +911,19 @@ namespace WindowsFormsApplication
                 new ObjectParameter("ProductID", productID) :
                 new ObjectParameter("ProductID", typeof(string));
     
+            var quantityParameter = quantity.HasValue ?
+                new ObjectParameter("Quantity", quantity) :
+                new ObjectParameter("Quantity", typeof(int));
+    
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("Price", price) :
+                new ObjectParameter("Price", typeof(double));
+    
             var statusParameter = status != null ?
                 new ObjectParameter("Status", status) :
                 new ObjectParameter("Status", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_HEADQUATERRECEIPTDETAIL", hEADQUATERIDParameter, productIDParameter, statusParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_HEADQUATERRECEIPTDETAIL", hEADQUATERIDParameter, productIDParameter, quantityParameter, priceParameter, statusParameter);
         }
     
         public virtual int SP_UPDATE_PRODUCT(string iD, string nAME, string sUPPLIERID, string cATEGORYID, string iMAGE)
@@ -1362,7 +1374,7 @@ namespace WindowsFormsApplication
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_PriceUpdate", productIDParameter, priceParameter, effectiveDayParameter);
         }
     
-        public virtual int usp_PromotionUpdate(string iD, Nullable<double> pPrice, Nullable<System.DateTime> date, string cont, string img, string proID)
+        public virtual int usp_PromotionUpdate(string iD, Nullable<double> pPrice, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, string cont, string img, string proID)
         {
             var iDParameter = iD != null ?
                 new ObjectParameter("ID", iD) :
@@ -1372,9 +1384,13 @@ namespace WindowsFormsApplication
                 new ObjectParameter("PPrice", pPrice) :
                 new ObjectParameter("PPrice", typeof(double));
     
-            var dateParameter = date.HasValue ?
-                new ObjectParameter("Date", date) :
-                new ObjectParameter("Date", typeof(System.DateTime));
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("StartDate", startDate) :
+                new ObjectParameter("StartDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("EndDate", endDate) :
+                new ObjectParameter("EndDate", typeof(System.DateTime));
     
             var contParameter = cont != null ?
                 new ObjectParameter("Cont", cont) :
@@ -1388,7 +1404,7 @@ namespace WindowsFormsApplication
                 new ObjectParameter("ProID", proID) :
                 new ObjectParameter("ProID", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_PromotionUpdate", iDParameter, pPriceParameter, dateParameter, contParameter, imgParameter, proIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_PromotionUpdate", iDParameter, pPriceParameter, startDateParameter, endDateParameter, contParameter, imgParameter, proIDParameter);
         }
     
         public virtual int usp_PromotionUpdateTest(string iD, Nullable<double> pPrice, string cont, string img, string proID)

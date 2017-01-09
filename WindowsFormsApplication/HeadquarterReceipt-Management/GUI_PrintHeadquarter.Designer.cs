@@ -41,6 +41,7 @@
             this.crvHeadquarter.Name = "crvHeadquarter";
             this.crvHeadquarter.Size = new System.Drawing.Size(816, 344);
             this.crvHeadquarter.TabIndex = 0;
+            this.crvHeadquarter.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
             // GUI_PrintHeadquarter
             // 

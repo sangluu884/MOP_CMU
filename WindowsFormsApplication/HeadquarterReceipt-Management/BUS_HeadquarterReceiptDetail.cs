@@ -19,7 +19,7 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management
         public List<HeadquaterReceiptDetail> LoadDetail(string headquarterID)
         {
             CMART0Entities db = new CMART0Entities();
-            return db.HeadquaterReceiptDetails.Where(x=>x.HeadquaterID==headquarterID).ToList();
+            return db.HeadquaterReceiptDetails.Where(x => x.HeadquaterID == headquarterID).ToList();
         }
 
         // INSERT
@@ -40,12 +40,12 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management
         }
 
         //UPDATE
-        public bool UpdateHeadquarterDetail(string headquarterID, string productID, string status)
+        public bool UpdateHeadquarterDetail(string headquarterID, string productID, int quantity, double price, string status)
         {
             bool flag = false;
             try
             {
-                db.SP_UPDATE_HEADQUATERRECEIPTDETAIL(headquarterID, productID, status);
+                db.SP_UPDATE_HEADQUATERRECEIPTDETAIL(headquarterID, productID, quantity, price, status);
                 flag = true;
             }
             catch
@@ -67,10 +67,10 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management
         {
             bool flag = false;
             CMART0Entities db = new CMART0Entities();
-            HeadquaterReceiptDetail detail = db.HeadquaterReceiptDetails.Single(x =>x.HeadquaterID==headquarter && x.ProductID == productID);
+            HeadquaterReceiptDetail detail = db.HeadquaterReceiptDetails.Single(x => x.HeadquaterID == headquarter && x.ProductID == productID);
             try
             {
-                db.DeleteObject(detail);
+                db.HeadquaterReceiptDetails.Remove(detail);
                 //db.usp_Account_Delete(accountID);
                 db.SaveChanges();
                 flag = true;

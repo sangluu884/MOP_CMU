@@ -38,9 +38,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cboHeadquarterID = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lstHeadquarterRDs = new System.Windows.Forms.DataGridView();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lstProducts)).BeginInit();
@@ -152,6 +152,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "LIST OF HEADQUARTER RECEIPT DETAIL";
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(519, 324);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(75, 23);
+            this.btnPrint.TabIndex = 10;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // txtSearch
             // 
             this.txtSearch.Location = new System.Drawing.Point(381, 19);
@@ -169,16 +179,6 @@
             this.lstHeadquarterRDs.Size = new System.Drawing.Size(588, 259);
             this.lstHeadquarterRDs.TabIndex = 1;
             // 
-            // btnPrint
-            // 
-            this.btnPrint.Location = new System.Drawing.Point(519, 324);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(75, 23);
-            this.btnPrint.TabIndex = 10;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
             // GUI_HeadquarterReceiptDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -192,6 +192,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Name = "GUI_HeadquarterReceiptDetail";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GUI_HeadquarterReceiptDetail";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

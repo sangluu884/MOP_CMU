@@ -136,6 +136,7 @@
           <Property Name="PromotionID" Type="varchar" MaxLength="13" Nullable="false" />
           <Property Name="PromotionPrice" Type="float" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="Content" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Image" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ProductID" Type="varchar" MaxLength="10" Nullable="false" />
@@ -381,6 +382,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Promotion_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Promotion" Type="Self.Promotion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Promotion">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SanPham_LoaiSanPham">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -402,18 +415,6 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="SupplierID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ThongTinKhuyenMai_SanPham">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="Promotion" Type="Self.Promotion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="Promotion">
-              <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -582,6 +583,7 @@
         <Function Name="SP_PROMOTION_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PromotionPrice" Type="real" Mode="In" />
           <Parameter Name="StartDate" Type="date" Mode="In" />
+          <Parameter Name="EndDate" Type="date" Mode="In" />
           <Parameter Name="Content" Type="nvarchar" Mode="In" />
           <Parameter Name="Image" Type="varchar" Mode="In" />
           <Parameter Name="ProductId" Type="varchar" Mode="In" />
@@ -683,6 +685,8 @@
         <Function Name="SP_UPDATE_HEADQUATERRECEIPTDETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="HEADQUATERID" Type="varchar" Mode="In" />
           <Parameter Name="ProductID" Type="varchar" Mode="In" />
+          <Parameter Name="Quantity" Type="int" Mode="In" />
+          <Parameter Name="Price" Type="float" Mode="In" />
           <Parameter Name="Status" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_PRODUCT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -822,7 +826,8 @@
         <Function Name="usp_PromotionUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="varchar" Mode="In" />
           <Parameter Name="PPrice" Type="float" Mode="In" />
-          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="StartDate" Type="date" Mode="In" />
+          <Parameter Name="EndDate" Type="date" Mode="In" />
           <Parameter Name="Cont" Type="nvarchar" Mode="In" />
           <Parameter Name="Img" Type="varchar" Mode="In" />
           <Parameter Name="ProID" Type="varchar" Mode="In" />
@@ -948,6 +953,10 @@
             <End Role="Account" EntitySet="Account" />
             <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipt" />
           </AssociationSet>
+          <AssociationSet Name="FK_Promotion_Product" Association="Self.FK_Promotion_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Promotion" EntitySet="Promotion" />
+          </AssociationSet>
           <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="Self.FK_SanPham_LoaiSanPham">
             <End Role="Category" EntitySet="Category" />
             <End Role="Product" EntitySet="Product" />
@@ -956,565 +965,12 @@
             <End Role="Supplier" EntitySet="Supplier" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK_ThongTinKhuyenMai_SanPham" Association="Self.FK_ThongTinKhuyenMai_SanPham">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Promotion" EntitySet="Promotion" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CMART7Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="AccountID" />
-          </Key>
-          <Property Name="AccountID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CMND" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Authorities" Relationship="Self.FK_Authority_Account" FromRole="Account" ToRole="Authority" />
-          <NavigationProperty Name="BranchOfficeReceipts" Relationship="Self.FK_BranchOfficeReceipt_Account" FromRole="Account" ToRole="BranchOfficeReceipt" />
-          <NavigationProperty Name="Bills" Relationship="Self.FK_HoaDon_TaiKhoan" FromRole="Account" ToRole="Bill" />
-          <NavigationProperty Name="ProposeReceipts" Relationship="Self.FK_PhieuDeXuatNhapHang_TaiKhoan" FromRole="Account" ToRole="ProposeReceipt" />
-          <NavigationProperty Name="HeadquaterReceipts" Relationship="Self.FK_PhieuNhapHangTruSo_TaiKhoan" FromRole="Account" ToRole="HeadquaterReceipt" />
-        </EntityType>
-        <EntityType Name="Authority">
-          <Key>
-            <PropertyRef Name="AccountID" />
-            <PropertyRef Name="NameOfAuthority" />
-          </Key>
-          <Property Name="AccountID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NameOfAuthority" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Create" Type="Boolean" Nullable="false" />
-          <Property Name="Update" Type="Boolean" Nullable="false" />
-          <Property Name="Delete" Type="Boolean" Nullable="false" />
-          <Property Name="View" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Account" Relationship="Self.FK_Authority_Account" FromRole="Authority" ToRole="Account" />
-          <NavigationProperty Name="AuthorityName" Relationship="Self.FK_Authority_AuthorityName" FromRole="Authority" ToRole="AuthorityName" />
-        </EntityType>
-        <EntityType Name="AuthorityName">
-          <Key>
-            <PropertyRef Name="NameOfAuthority" />
-          </Key>
-          <Property Name="NameOfAuthority" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Authorities" Relationship="Self.FK_Authority_AuthorityName" FromRole="AuthorityName" ToRole="Authority" />
-        </EntityType>
-        <EntityType Name="Bill">
-          <Key>
-            <PropertyRef Name="BillID" />
-          </Key>
-          <Property Name="BillID" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="SaleDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="POS" Type="Int32" Nullable="false" />
-          <Property Name="TotalAmount" Type="Double" Nullable="false" />
-          <Property Name="TotalQuantity" Type="Int32" Nullable="false" />
-          <Property Name="InputMoney" Type="Double" Nullable="false" />
-          <Property Name="OutputMoney" Type="Double" Nullable="false" />
-          <Property Name="AccountID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Account" Relationship="Self.FK_HoaDon_TaiKhoan" FromRole="Bill" ToRole="Account" />
-          <NavigationProperty Name="BillDetails" Relationship="Self.FK_ChiTietHoaDon_HoaDon" FromRole="Bill" ToRole="BillDetail" />
-        </EntityType>
-        <EntityType Name="BillDetail">
-          <Key>
-            <PropertyRef Name="ProductID" />
-            <PropertyRef Name="BillID" />
-          </Key>
-          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="BillID" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Bill" Relationship="Self.FK_ChiTietHoaDon_HoaDon" FromRole="BillDetail" ToRole="Bill" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_ChiTietHoaDon_SanPham" FromRole="BillDetail" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="BranchOfficeReceipt">
-          <Key>
-            <PropertyRef Name="BranchOfficeID" />
-          </Key>
-          <Property Name="BranchOfficeID" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="HeadquaterID" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AccountID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Account" Relationship="Self.FK_BranchOfficeReceipt_Account" FromRole="BranchOfficeReceipt" ToRole="Account" />
-          <NavigationProperty Name="HeadquaterReceipt" Relationship="Self.FK_BranchOfficeReceipt_HeadquaterReceipt" FromRole="BranchOfficeReceipt" ToRole="HeadquaterReceipt" />
-          <NavigationProperty Name="BranchOfficeReceiptDetails" Relationship="Self.FK_BranchOfficeReceiptDetail_BranchOfficeReceipt" FromRole="BranchOfficeReceipt" ToRole="BranchOfficeReceiptDetail" />
-        </EntityType>
-        <EntityType Name="BranchOfficeReceiptDetail">
-          <Key>
-            <PropertyRef Name="BranchOfficeID" />
-            <PropertyRef Name="ProductID" />
-          </Key>
-          <Property Name="BranchOfficeID" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="BranchOfficeReceipt" Relationship="Self.FK_BranchOfficeReceiptDetail_BranchOfficeReceipt" FromRole="BranchOfficeReceiptDetail" ToRole="BranchOfficeReceipt" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_BranchOfficeReceiptDetail_Product" FromRole="BranchOfficeReceiptDetail" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="CategoryID" />
-          </Key>
-          <Property Name="CategoryID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="Category" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="HeadquaterReceipt">
-          <Key>
-            <PropertyRef Name="HeadquaterID" />
-          </Key>
-          <Property Name="HeadquaterID" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProposeID" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="TotalAmount" Type="Double" Nullable="false" />
-          <Property Name="AccountID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Account" Relationship="Self.FK_PhieuNhapHangTruSo_TaiKhoan" FromRole="HeadquaterReceipt" ToRole="Account" />
-          <NavigationProperty Name="BranchOfficeReceipts" Relationship="Self.FK_BranchOfficeReceipt_HeadquaterReceipt" FromRole="HeadquaterReceipt" ToRole="BranchOfficeReceipt" />
-          <NavigationProperty Name="HeadquaterReceiptDetails" Relationship="Self.FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo" FromRole="HeadquaterReceipt" ToRole="HeadquaterReceiptDetail" />
-          <NavigationProperty Name="ProposeReceipt" Relationship="Self.FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang" FromRole="HeadquaterReceipt" ToRole="ProposeReceipt" />
-        </EntityType>
-        <EntityType Name="HeadquaterReceiptDetail">
-          <Key>
-            <PropertyRef Name="HeadquaterID" />
-            <PropertyRef Name="ProductID" />
-          </Key>
-          <Property Name="HeadquaterID" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Double" Nullable="false" />
-          <Property Name="ExpiryDate" Type="DateTime" Precision="0" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="HeadquaterReceipt" Relationship="Self.FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo" FromRole="HeadquaterReceiptDetail" ToRole="HeadquaterReceipt" />
-        </EntityType>
-        <EntityType Name="Price">
-          <Key>
-            <PropertyRef Name="ProductID" />
-            <PropertyRef Name="Price1" />
-            <PropertyRef Name="EffectiveDay" />
-          </Key>
-          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Price1" Type="Double" Nullable="false" />
-          <Property Name="EffectiveDay" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Gia_SanPham" FromRole="Price" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ProductID" />
-          </Key>
-          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="SupplierID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CategoryID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="BillDetails" Relationship="Self.FK_ChiTietHoaDon_SanPham" FromRole="Product" ToRole="BillDetail" />
-          <NavigationProperty Name="BranchOfficeReceiptDetails" Relationship="Self.FK_BranchOfficeReceiptDetail_Product" FromRole="Product" ToRole="BranchOfficeReceiptDetail" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="Product" ToRole="Category" />
-          <NavigationProperty Name="Prices" Relationship="Self.FK_Gia_SanPham" FromRole="Product" ToRole="Price" />
-          <NavigationProperty Name="ProposeReceiptDetails" Relationship="Self.FK_ChiTietPhieuDeXuatNhapHang_SanPham" FromRole="Product" ToRole="ProposeReceiptDetail" />
-          <NavigationProperty Name="Supplier" Relationship="Self.FK_SanPham_NhaCungCap" FromRole="Product" ToRole="Supplier" />
-          <NavigationProperty Name="Promotions" Relationship="Self.FK_ThongTinKhuyenMai_SanPham" FromRole="Product" ToRole="Promotion" />
-        </EntityType>
-        <EntityType Name="Promotion">
-          <Key>
-            <PropertyRef Name="PromotionID" />
-          </Key>
-          <Property Name="PromotionID" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PromotionPrice" Type="Double" Nullable="false" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Content" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_ThongTinKhuyenMai_SanPham" FromRole="Promotion" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="ProposeReceipt">
-          <Key>
-            <PropertyRef Name="ProposeID" />
-          </Key>
-          <Property Name="ProposeID" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProposeDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="SupplierID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="AccountID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Account" Relationship="Self.FK_PhieuDeXuatNhapHang_TaiKhoan" FromRole="ProposeReceipt" ToRole="Account" />
-          <NavigationProperty Name="HeadquaterReceipts" Relationship="Self.FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang" FromRole="ProposeReceipt" ToRole="HeadquaterReceipt" />
-          <NavigationProperty Name="ProposeReceiptDetails" Relationship="Self.FK_ChiTietPhieuDeXuatNhapHang_PhieuDeXuatNhapHang" FromRole="ProposeReceipt" ToRole="ProposeReceiptDetail" />
-          <NavigationProperty Name="Supplier" Relationship="Self.FK_PhieuDeXuatNhapHang_NhaCungCap" FromRole="ProposeReceipt" ToRole="Supplier" />
-        </EntityType>
-        <EntityType Name="ProposeReceiptDetail">
-          <Key>
-            <PropertyRef Name="ProductID" />
-            <PropertyRef Name="ProposeID" />
-          </Key>
-          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProposeID" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_ChiTietPhieuDeXuatNhapHang_SanPham" FromRole="ProposeReceiptDetail" ToRole="Product" />
-          <NavigationProperty Name="ProposeReceipt" Relationship="Self.FK_ChiTietPhieuDeXuatNhapHang_PhieuDeXuatNhapHang" FromRole="ProposeReceiptDetail" ToRole="ProposeReceipt" />
-        </EntityType>
-        <EntityType Name="Supplier">
-          <Key>
-            <PropertyRef Name="SupplierID" />
-          </Key>
-          <Property Name="SupplierID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_SanPham_NhaCungCap" FromRole="Supplier" ToRole="Product" />
-          <NavigationProperty Name="ProposeReceipts" Relationship="Self.FK_PhieuDeXuatNhapHang_NhaCungCap" FromRole="Supplier" ToRole="ProposeReceipt" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <Association Name="FK_Authority_Account">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
-          <End Role="Authority" Type="Self.Authority" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="AccountID" />
-            </Principal>
-            <Dependent Role="Authority">
-              <PropertyRef Name="AccountID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BranchOfficeReceipt_Account">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
-          <End Role="BranchOfficeReceipt" Type="Self.BranchOfficeReceipt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="AccountID" />
-            </Principal>
-            <Dependent Role="BranchOfficeReceipt">
-              <PropertyRef Name="AccountID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HoaDon_TaiKhoan">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
-          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="AccountID" />
-            </Principal>
-            <Dependent Role="Bill">
-              <PropertyRef Name="AccountID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PhieuDeXuatNhapHang_TaiKhoan">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
-          <End Role="ProposeReceipt" Type="Self.ProposeReceipt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="AccountID" />
-            </Principal>
-            <Dependent Role="ProposeReceipt">
-              <PropertyRef Name="AccountID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PhieuNhapHangTruSo_TaiKhoan">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
-          <End Role="HeadquaterReceipt" Type="Self.HeadquaterReceipt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="AccountID" />
-            </Principal>
-            <Dependent Role="HeadquaterReceipt">
-              <PropertyRef Name="AccountID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Authority_AuthorityName">
-          <End Role="AuthorityName" Type="Self.AuthorityName" Multiplicity="1" />
-          <End Role="Authority" Type="Self.Authority" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AuthorityName">
-              <PropertyRef Name="NameOfAuthority" />
-            </Principal>
-            <Dependent Role="Authority">
-              <PropertyRef Name="NameOfAuthority" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ChiTietHoaDon_HoaDon">
-          <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
-          <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Bill">
-              <PropertyRef Name="BillID" />
-            </Principal>
-            <Dependent Role="BillDetail">
-              <PropertyRef Name="BillID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ChiTietHoaDon_SanPham">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="BillDetail">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BranchOfficeReceipt_HeadquaterReceipt">
-          <End Role="HeadquaterReceipt" Type="Self.HeadquaterReceipt" Multiplicity="1" />
-          <End Role="BranchOfficeReceipt" Type="Self.BranchOfficeReceipt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HeadquaterReceipt">
-              <PropertyRef Name="HeadquaterID" />
-            </Principal>
-            <Dependent Role="BranchOfficeReceipt">
-              <PropertyRef Name="HeadquaterID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BranchOfficeReceiptDetail_BranchOfficeReceipt">
-          <End Role="BranchOfficeReceipt" Type="Self.BranchOfficeReceipt" Multiplicity="1" />
-          <End Role="BranchOfficeReceiptDetail" Type="Self.BranchOfficeReceiptDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BranchOfficeReceipt">
-              <PropertyRef Name="BranchOfficeID" />
-            </Principal>
-            <Dependent Role="BranchOfficeReceiptDetail">
-              <PropertyRef Name="BranchOfficeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BranchOfficeReceiptDetail_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="BranchOfficeReceiptDetail" Type="Self.BranchOfficeReceiptDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="BranchOfficeReceiptDetail">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SanPham_LoaiSanPham">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="CategoryID" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="CategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo">
-          <End Role="HeadquaterReceipt" Type="Self.HeadquaterReceipt" Multiplicity="1" />
-          <End Role="HeadquaterReceiptDetail" Type="Self.HeadquaterReceiptDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HeadquaterReceipt">
-              <PropertyRef Name="HeadquaterID" />
-            </Principal>
-            <Dependent Role="HeadquaterReceiptDetail">
-              <PropertyRef Name="HeadquaterID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang">
-          <End Role="ProposeReceipt" Type="Self.ProposeReceipt" Multiplicity="1" />
-          <End Role="HeadquaterReceipt" Type="Self.HeadquaterReceipt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProposeReceipt">
-              <PropertyRef Name="ProposeID" />
-            </Principal>
-            <Dependent Role="HeadquaterReceipt">
-              <PropertyRef Name="ProposeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Gia_SanPham">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="Price" Type="Self.Price" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="Price">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ChiTietPhieuDeXuatNhapHang_SanPham">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="ProposeReceiptDetail" Type="Self.ProposeReceiptDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="ProposeReceiptDetail">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SanPham_NhaCungCap">
-          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Supplier">
-              <PropertyRef Name="SupplierID" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="SupplierID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ThongTinKhuyenMai_SanPham">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="Promotion" Type="Self.Promotion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="Promotion">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ChiTietPhieuDeXuatNhapHang_PhieuDeXuatNhapHang">
-          <End Role="ProposeReceipt" Type="Self.ProposeReceipt" Multiplicity="1" />
-          <End Role="ProposeReceiptDetail" Type="Self.ProposeReceiptDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProposeReceipt">
-              <PropertyRef Name="ProposeID" />
-            </Principal>
-            <Dependent Role="ProposeReceiptDetail">
-              <PropertyRef Name="ProposeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PhieuDeXuatNhapHang_NhaCungCap">
-          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
-          <End Role="ProposeReceipt" Type="Self.ProposeReceipt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Supplier">
-              <PropertyRef Name="SupplierID" />
-            </Principal>
-            <Dependent Role="ProposeReceipt">
-              <PropertyRef Name="SupplierID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="CMART0Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Accounts" EntityType="Self.Account" />
-          <EntitySet Name="Authorities" EntityType="Self.Authority" />
-          <EntitySet Name="AuthorityNames" EntityType="Self.AuthorityName" />
-          <EntitySet Name="Bills" EntityType="Self.Bill" />
-          <EntitySet Name="BillDetails" EntityType="Self.BillDetail" />
-          <EntitySet Name="BranchOfficeReceipts" EntityType="Self.BranchOfficeReceipt" />
-          <EntitySet Name="BranchOfficeReceiptDetails" EntityType="Self.BranchOfficeReceiptDetail" />
-          <EntitySet Name="Categories" EntityType="Self.Category" />
-          <EntitySet Name="HeadquaterReceipts" EntityType="Self.HeadquaterReceipt" />
-          <EntitySet Name="HeadquaterReceiptDetails" EntityType="Self.HeadquaterReceiptDetail" />
-          <EntitySet Name="Prices" EntityType="Self.Price" />
-          <EntitySet Name="Products" EntityType="Self.Product" />
-          <EntitySet Name="Promotions" EntityType="Self.Promotion" />
-          <EntitySet Name="ProposeReceipts" EntityType="Self.ProposeReceipt" />
-          <EntitySet Name="ProposeReceiptDetails" EntityType="Self.ProposeReceiptDetail" />
-          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <AssociationSet Name="FK_Authority_Account" Association="Self.FK_Authority_Account">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="Authority" EntitySet="Authorities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BranchOfficeReceipt_Account" Association="Self.FK_BranchOfficeReceipt_Account">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="BranchOfficeReceipt" EntitySet="BranchOfficeReceipts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HoaDon_TaiKhoan" Association="Self.FK_HoaDon_TaiKhoan">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="Bill" EntitySet="Bills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PhieuDeXuatNhapHang_TaiKhoan" Association="Self.FK_PhieuDeXuatNhapHang_TaiKhoan">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="ProposeReceipt" EntitySet="ProposeReceipts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PhieuNhapHangTruSo_TaiKhoan" Association="Self.FK_PhieuNhapHangTruSo_TaiKhoan">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Authority_AuthorityName" Association="Self.FK_Authority_AuthorityName">
-            <End Role="AuthorityName" EntitySet="AuthorityNames" />
-            <End Role="Authority" EntitySet="Authorities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChiTietHoaDon_HoaDon" Association="Self.FK_ChiTietHoaDon_HoaDon">
-            <End Role="Bill" EntitySet="Bills" />
-            <End Role="BillDetail" EntitySet="BillDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChiTietHoaDon_SanPham" Association="Self.FK_ChiTietHoaDon_SanPham">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="BillDetail" EntitySet="BillDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BranchOfficeReceipt_HeadquaterReceipt" Association="Self.FK_BranchOfficeReceipt_HeadquaterReceipt">
-            <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipts" />
-            <End Role="BranchOfficeReceipt" EntitySet="BranchOfficeReceipts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BranchOfficeReceiptDetail_BranchOfficeReceipt" Association="Self.FK_BranchOfficeReceiptDetail_BranchOfficeReceipt">
-            <End Role="BranchOfficeReceipt" EntitySet="BranchOfficeReceipts" />
-            <End Role="BranchOfficeReceiptDetail" EntitySet="BranchOfficeReceiptDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BranchOfficeReceiptDetail_Product" Association="Self.FK_BranchOfficeReceiptDetail_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="BranchOfficeReceiptDetail" EntitySet="BranchOfficeReceiptDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="Self.FK_SanPham_LoaiSanPham">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo" Association="Self.FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo">
-            <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipts" />
-            <End Role="HeadquaterReceiptDetail" EntitySet="HeadquaterReceiptDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang" Association="Self.FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang">
-            <End Role="ProposeReceipt" EntitySet="ProposeReceipts" />
-            <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Gia_SanPham" Association="Self.FK_Gia_SanPham">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Price" EntitySet="Prices" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChiTietPhieuDeXuatNhapHang_SanPham" Association="Self.FK_ChiTietPhieuDeXuatNhapHang_SanPham">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="ProposeReceiptDetail" EntitySet="ProposeReceiptDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SanPham_NhaCungCap" Association="Self.FK_SanPham_NhaCungCap">
-            <End Role="Supplier" EntitySet="Suppliers" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ThongTinKhuyenMai_SanPham" Association="Self.FK_ThongTinKhuyenMai_SanPham">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Promotion" EntitySet="Promotions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChiTietPhieuDeXuatNhapHang_PhieuDeXuatNhapHang" Association="Self.FK_ChiTietPhieuDeXuatNhapHang_PhieuDeXuatNhapHang">
-            <End Role="ProposeReceipt" EntitySet="ProposeReceipts" />
-            <End Role="ProposeReceiptDetail" EntitySet="ProposeReceiptDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PhieuDeXuatNhapHang_NhaCungCap" Association="Self.FK_PhieuDeXuatNhapHang_NhaCungCap">
-            <End Role="Supplier" EntitySet="Suppliers" />
-            <End Role="ProposeReceipt" EntitySet="ProposeReceipts" />
-          </AssociationSet>
           <FunctionImport Name="Headquarter_SelectProduct" ReturnType="Collection(String)">
           <Parameter Name="ProposedID" Mode="In" Type="String" />
           </FunctionImport>
@@ -1679,6 +1135,7 @@
           <FunctionImport Name="SP_PROMOTION_INSERT">
             <Parameter Name="PromotionPrice" Mode="In" Type="Single" />
             <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
             <Parameter Name="Content" Mode="In" Type="String" />
             <Parameter Name="Image" Mode="In" Type="String" />
             <Parameter Name="ProductId" Mode="In" Type="String" />
@@ -1780,6 +1237,8 @@
           <FunctionImport Name="SP_UPDATE_HEADQUATERRECEIPTDETAIL">
             <Parameter Name="HEADQUATERID" Mode="In" Type="String" />
             <Parameter Name="ProductID" Mode="In" Type="String" />
+            <Parameter Name="Quantity" Mode="In" Type="Int32" />
+            <Parameter Name="Price" Mode="In" Type="Double" />
             <Parameter Name="Status" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_PRODUCT">
@@ -1919,7 +1378,8 @@
           <FunctionImport Name="usp_PromotionUpdate">
             <Parameter Name="ID" Mode="In" Type="String" />
             <Parameter Name="PPrice" Mode="In" Type="Double" />
-            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
             <Parameter Name="Cont" Mode="In" Type="String" />
             <Parameter Name="Img" Mode="In" Type="String" />
             <Parameter Name="ProID" Mode="In" Type="String" />
@@ -1959,7 +1419,104 @@
             <Parameter Name="Address" Mode="In" Type="String" />
             <Parameter Name="PhoneNumber" Mode="In" Type="String" />
           </FunctionImport>
-        </EntityContainer>
+          <EntitySet Name="Accounts" EntityType="CMART7Model.Account" />
+          <EntitySet Name="Authorities" EntityType="CMART7Model.Authority" />
+          <EntitySet Name="AuthorityNames" EntityType="CMART7Model.AuthorityName" />
+          <EntitySet Name="Bills" EntityType="CMART7Model.Bill" />
+          <EntitySet Name="BillDetails" EntityType="CMART7Model.BillDetail" />
+          <EntitySet Name="BranchOfficeReceipts" EntityType="CMART7Model.BranchOfficeReceipt" />
+          <EntitySet Name="BranchOfficeReceiptDetails" EntityType="CMART7Model.BranchOfficeReceiptDetail" />
+          <EntitySet Name="Categories" EntityType="CMART7Model.Category" />
+          <EntitySet Name="HeadquaterReceipts" EntityType="CMART7Model.HeadquaterReceipt" />
+          <EntitySet Name="HeadquaterReceiptDetails" EntityType="CMART7Model.HeadquaterReceiptDetail" />
+          <EntitySet Name="Prices" EntityType="CMART7Model.Price" />
+          <EntitySet Name="Products" EntityType="CMART7Model.Product" />
+          <EntitySet Name="Promotions" EntityType="CMART7Model.Promotion" />
+          <EntitySet Name="ProposeReceipts" EntityType="CMART7Model.ProposeReceipt" />
+          <EntitySet Name="ProposeReceiptDetails" EntityType="CMART7Model.ProposeReceiptDetail" />
+          <EntitySet Name="Suppliers" EntityType="CMART7Model.Supplier" />
+          <EntitySet Name="sysdiagrams" EntityType="CMART7Model.sysdiagram" />
+          <AssociationSet Name="FK_Authority_Account" Association="CMART7Model.FK_Authority_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Authority" EntitySet="Authorities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchOfficeReceipt_Account" Association="CMART7Model.FK_BranchOfficeReceipt_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="BranchOfficeReceipt" EntitySet="BranchOfficeReceipts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoaDon_TaiKhoan" Association="CMART7Model.FK_HoaDon_TaiKhoan">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeXuatNhapHang_TaiKhoan" Association="CMART7Model.FK_PhieuDeXuatNhapHang_TaiKhoan">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="ProposeReceipt" EntitySet="ProposeReceipts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuNhapHangTruSo_TaiKhoan" Association="CMART7Model.FK_PhieuNhapHangTruSo_TaiKhoan">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authority_AuthorityName" Association="CMART7Model.FK_Authority_AuthorityName">
+            <End Role="AuthorityName" EntitySet="AuthorityNames" />
+            <End Role="Authority" EntitySet="Authorities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietHoaDon_HoaDon" Association="CMART7Model.FK_ChiTietHoaDon_HoaDon">
+            <End Role="Bill" EntitySet="Bills" />
+            <End Role="BillDetail" EntitySet="BillDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietHoaDon_SanPham" Association="CMART7Model.FK_ChiTietHoaDon_SanPham">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="BillDetail" EntitySet="BillDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchOfficeReceipt_HeadquaterReceipt" Association="CMART7Model.FK_BranchOfficeReceipt_HeadquaterReceipt">
+            <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipts" />
+            <End Role="BranchOfficeReceipt" EntitySet="BranchOfficeReceipts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchOfficeReceiptDetail_BranchOfficeReceipt" Association="CMART7Model.FK_BranchOfficeReceiptDetail_BranchOfficeReceipt">
+            <End Role="BranchOfficeReceipt" EntitySet="BranchOfficeReceipts" />
+            <End Role="BranchOfficeReceiptDetail" EntitySet="BranchOfficeReceiptDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchOfficeReceiptDetail_Product" Association="CMART7Model.FK_BranchOfficeReceiptDetail_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="BranchOfficeReceiptDetail" EntitySet="BranchOfficeReceiptDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="CMART7Model.FK_SanPham_LoaiSanPham">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo" Association="CMART7Model.FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo">
+            <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipts" />
+            <End Role="HeadquaterReceiptDetail" EntitySet="HeadquaterReceiptDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang" Association="CMART7Model.FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang">
+            <End Role="ProposeReceipt" EntitySet="ProposeReceipts" />
+            <End Role="HeadquaterReceipt" EntitySet="HeadquaterReceipts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gia_SanPham" Association="CMART7Model.FK_Gia_SanPham">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Price" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietPhieuDeXuatNhapHang_SanPham" Association="CMART7Model.FK_ChiTietPhieuDeXuatNhapHang_SanPham">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProposeReceiptDetail" EntitySet="ProposeReceiptDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotion_Product" Association="CMART7Model.FK_Promotion_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Promotion" EntitySet="Promotions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SanPham_NhaCungCap" Association="CMART7Model.FK_SanPham_NhaCungCap">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietPhieuDeXuatNhapHang_PhieuDeXuatNhapHang" Association="CMART7Model.FK_ChiTietPhieuDeXuatNhapHang_PhieuDeXuatNhapHang">
+            <End Role="ProposeReceipt" EntitySet="ProposeReceipts" />
+            <End Role="ProposeReceiptDetail" EntitySet="ProposeReceiptDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeXuatNhapHang_NhaCungCap" Association="CMART7Model.FK_PhieuDeXuatNhapHang_NhaCungCap">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="ProposeReceipt" EntitySet="ProposeReceipts" />
+          </AssociationSet>
+          </EntityContainer>
         <ComplexType Name="PROMOTION_SEARCH_Result">
           <Property Type="String" Name="PromotionID" Nullable="false" MaxLength="13" />
           <Property Type="Double" Name="PromotionPrice" Nullable="false" />
@@ -2284,194 +1841,465 @@
           <Property Type="String" Name="Address" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="50" />
         </ComplexType>
-      </Schema>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CMND" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Authorities" Relationship="CMART7Model.FK_Authority_Account" FromRole="Account" ToRole="Authority" />
+          <NavigationProperty Name="BranchOfficeReceipts" Relationship="CMART7Model.FK_BranchOfficeReceipt_Account" FromRole="Account" ToRole="BranchOfficeReceipt" />
+          <NavigationProperty Name="Bills" Relationship="CMART7Model.FK_HoaDon_TaiKhoan" FromRole="Account" ToRole="Bill" />
+          <NavigationProperty Name="ProposeReceipts" Relationship="CMART7Model.FK_PhieuDeXuatNhapHang_TaiKhoan" FromRole="Account" ToRole="ProposeReceipt" />
+          <NavigationProperty Name="HeadquaterReceipts" Relationship="CMART7Model.FK_PhieuNhapHangTruSo_TaiKhoan" FromRole="Account" ToRole="HeadquaterReceipt" />
+        </EntityType>
+        <EntityType Name="Authority">
+          <Key>
+            <PropertyRef Name="AccountID" />
+            <PropertyRef Name="NameOfAuthority" />
+          </Key>
+          <Property Name="AccountID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NameOfAuthority" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Create" Type="Boolean" Nullable="false" />
+          <Property Name="Update" Type="Boolean" Nullable="false" />
+          <Property Name="Delete" Type="Boolean" Nullable="false" />
+          <Property Name="View" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="CMART7Model.FK_Authority_Account" FromRole="Authority" ToRole="Account" />
+          <NavigationProperty Name="AuthorityName" Relationship="CMART7Model.FK_Authority_AuthorityName" FromRole="Authority" ToRole="AuthorityName" />
+        </EntityType>
+        <EntityType Name="AuthorityName">
+          <Key>
+            <PropertyRef Name="NameOfAuthority" />
+          </Key>
+          <Property Name="NameOfAuthority" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Authorities" Relationship="CMART7Model.FK_Authority_AuthorityName" FromRole="AuthorityName" ToRole="Authority" />
+        </EntityType>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="BillID" />
+          </Key>
+          <Property Name="BillID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="SaleDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="POS" Type="Int32" Nullable="false" />
+          <Property Name="TotalAmount" Type="Double" Nullable="false" />
+          <Property Name="TotalQuantity" Type="Int32" Nullable="false" />
+          <Property Name="InputMoney" Type="Double" Nullable="false" />
+          <Property Name="OutputMoney" Type="Double" Nullable="false" />
+          <Property Name="AccountID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Account" Relationship="CMART7Model.FK_HoaDon_TaiKhoan" FromRole="Bill" ToRole="Account" />
+          <NavigationProperty Name="BillDetails" Relationship="CMART7Model.FK_ChiTietHoaDon_HoaDon" FromRole="Bill" ToRole="BillDetail" />
+        </EntityType>
+        <EntityType Name="BillDetail">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="BillID" />
+          </Key>
+          <Property Name="ProductID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BillID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Bill" Relationship="CMART7Model.FK_ChiTietHoaDon_HoaDon" FromRole="BillDetail" ToRole="Bill" />
+          <NavigationProperty Name="Product" Relationship="CMART7Model.FK_ChiTietHoaDon_SanPham" FromRole="BillDetail" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="BranchOfficeReceipt">
+          <Key>
+            <PropertyRef Name="BranchOfficeID" />
+          </Key>
+          <Property Name="BranchOfficeID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="HeadquaterID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Branch" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccountID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Account" Relationship="CMART7Model.FK_BranchOfficeReceipt_Account" FromRole="BranchOfficeReceipt" ToRole="Account" />
+          <NavigationProperty Name="HeadquaterReceipt" Relationship="CMART7Model.FK_BranchOfficeReceipt_HeadquaterReceipt" FromRole="BranchOfficeReceipt" ToRole="HeadquaterReceipt" />
+          <NavigationProperty Name="BranchOfficeReceiptDetails" Relationship="CMART7Model.FK_BranchOfficeReceiptDetail_BranchOfficeReceipt" FromRole="BranchOfficeReceipt" ToRole="BranchOfficeReceiptDetail" />
+        </EntityType>
+        <EntityType Name="BranchOfficeReceiptDetail">
+          <Key>
+            <PropertyRef Name="BranchOfficeID" />
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="BranchOfficeID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="ProductID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BranchOfficeReceipt" Relationship="CMART7Model.FK_BranchOfficeReceiptDetail_BranchOfficeReceipt" FromRole="BranchOfficeReceiptDetail" ToRole="BranchOfficeReceipt" />
+          <NavigationProperty Name="Product" Relationship="CMART7Model.FK_BranchOfficeReceiptDetail_Product" FromRole="BranchOfficeReceiptDetail" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="Products" Relationship="CMART7Model.FK_SanPham_LoaiSanPham" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="HeadquaterReceipt">
+          <Key>
+            <PropertyRef Name="HeadquaterID" />
+          </Key>
+          <Property Name="HeadquaterID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="ProposeID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TotalAmount" Type="Double" Nullable="false" />
+          <Property Name="AccountID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Account" Relationship="CMART7Model.FK_PhieuNhapHangTruSo_TaiKhoan" FromRole="HeadquaterReceipt" ToRole="Account" />
+          <NavigationProperty Name="BranchOfficeReceipts" Relationship="CMART7Model.FK_BranchOfficeReceipt_HeadquaterReceipt" FromRole="HeadquaterReceipt" ToRole="BranchOfficeReceipt" />
+          <NavigationProperty Name="HeadquaterReceiptDetails" Relationship="CMART7Model.FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo" FromRole="HeadquaterReceipt" ToRole="HeadquaterReceiptDetail" />
+          <NavigationProperty Name="ProposeReceipt" Relationship="CMART7Model.FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang" FromRole="HeadquaterReceipt" ToRole="ProposeReceipt" />
+        </EntityType>
+        <EntityType Name="HeadquaterReceiptDetail">
+          <Key>
+            <PropertyRef Name="HeadquaterID" />
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="HeadquaterID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="ProductID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HeadquaterReceipt" Relationship="CMART7Model.FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo" FromRole="HeadquaterReceiptDetail" ToRole="HeadquaterReceipt" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Price1" />
+            <PropertyRef Name="EffectiveDay" />
+          </Key>
+          <Property Name="ProductID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Price1" Type="Double" Nullable="false" />
+          <Property Name="EffectiveDay" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Product" Relationship="CMART7Model.FK_Gia_SanPham" FromRole="Price" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SupplierID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BillDetails" Relationship="CMART7Model.FK_ChiTietHoaDon_SanPham" FromRole="Product" ToRole="BillDetail" />
+          <NavigationProperty Name="BranchOfficeReceiptDetails" Relationship="CMART7Model.FK_BranchOfficeReceiptDetail_Product" FromRole="Product" ToRole="BranchOfficeReceiptDetail" />
+          <NavigationProperty Name="Category" Relationship="CMART7Model.FK_SanPham_LoaiSanPham" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="Prices" Relationship="CMART7Model.FK_Gia_SanPham" FromRole="Product" ToRole="Price" />
+          <NavigationProperty Name="ProposeReceiptDetails" Relationship="CMART7Model.FK_ChiTietPhieuDeXuatNhapHang_SanPham" FromRole="Product" ToRole="ProposeReceiptDetail" />
+          <NavigationProperty Name="Promotions" Relationship="CMART7Model.FK_Promotion_Product" FromRole="Product" ToRole="Promotion" />
+          <NavigationProperty Name="Supplier" Relationship="CMART7Model.FK_SanPham_NhaCungCap" FromRole="Product" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="Promotion">
+          <Key>
+            <PropertyRef Name="PromotionID" />
+          </Key>
+          <Property Name="PromotionID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="PromotionPrice" Type="Double" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Product" Relationship="CMART7Model.FK_Promotion_Product" FromRole="Promotion" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProposeReceipt">
+          <Key>
+            <PropertyRef Name="ProposeID" />
+          </Key>
+          <Property Name="ProposeID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="ProposeDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SupplierID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AccountID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Account" Relationship="CMART7Model.FK_PhieuDeXuatNhapHang_TaiKhoan" FromRole="ProposeReceipt" ToRole="Account" />
+          <NavigationProperty Name="HeadquaterReceipts" Relationship="CMART7Model.FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang" FromRole="ProposeReceipt" ToRole="HeadquaterReceipt" />
+          <NavigationProperty Name="ProposeReceiptDetails" Relationship="CMART7Model.FK_ChiTietPhieuDeXuatNhapHang_PhieuDeXuatNhapHang" FromRole="ProposeReceipt" ToRole="ProposeReceiptDetail" />
+          <NavigationProperty Name="Supplier" Relationship="CMART7Model.FK_PhieuDeXuatNhapHang_NhaCungCap" FromRole="ProposeReceipt" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="ProposeReceiptDetail">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ProposeID" />
+          </Key>
+          <Property Name="ProductID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ProposeID" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="CMART7Model.FK_ChiTietPhieuDeXuatNhapHang_SanPham" FromRole="ProposeReceiptDetail" ToRole="Product" />
+          <NavigationProperty Name="ProposeReceipt" Relationship="CMART7Model.FK_ChiTietPhieuDeXuatNhapHang_PhieuDeXuatNhapHang" FromRole="ProposeReceiptDetail" ToRole="ProposeReceipt" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="CMART7Model.FK_SanPham_NhaCungCap" FromRole="Supplier" ToRole="Product" />
+          <NavigationProperty Name="ProposeReceipts" Relationship="CMART7Model.FK_PhieuDeXuatNhapHang_NhaCungCap" FromRole="Supplier" ToRole="ProposeReceipt" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Authority_Account">
+          <End Type="CMART7Model.Account" Role="Account" Multiplicity="1" />
+          <End Type="CMART7Model.Authority" Role="Authority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Authority">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchOfficeReceipt_Account">
+          <End Type="CMART7Model.Account" Role="Account" Multiplicity="1" />
+          <End Type="CMART7Model.BranchOfficeReceipt" Role="BranchOfficeReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="BranchOfficeReceipt">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoaDon_TaiKhoan">
+          <End Type="CMART7Model.Account" Role="Account" Multiplicity="1" />
+          <End Type="CMART7Model.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeXuatNhapHang_TaiKhoan">
+          <End Type="CMART7Model.Account" Role="Account" Multiplicity="1" />
+          <End Type="CMART7Model.ProposeReceipt" Role="ProposeReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="ProposeReceipt">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuNhapHangTruSo_TaiKhoan">
+          <End Type="CMART7Model.Account" Role="Account" Multiplicity="1" />
+          <End Type="CMART7Model.HeadquaterReceipt" Role="HeadquaterReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="HeadquaterReceipt">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authority_AuthorityName">
+          <End Type="CMART7Model.AuthorityName" Role="AuthorityName" Multiplicity="1" />
+          <End Type="CMART7Model.Authority" Role="Authority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuthorityName">
+              <PropertyRef Name="NameOfAuthority" />
+            </Principal>
+            <Dependent Role="Authority">
+              <PropertyRef Name="NameOfAuthority" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietHoaDon_HoaDon">
+          <End Type="CMART7Model.Bill" Role="Bill" Multiplicity="1" />
+          <End Type="CMART7Model.BillDetail" Role="BillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="BillID" />
+            </Principal>
+            <Dependent Role="BillDetail">
+              <PropertyRef Name="BillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietHoaDon_SanPham">
+          <End Type="CMART7Model.Product" Role="Product" Multiplicity="1" />
+          <End Type="CMART7Model.BillDetail" Role="BillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="BillDetail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchOfficeReceipt_HeadquaterReceipt">
+          <End Type="CMART7Model.HeadquaterReceipt" Role="HeadquaterReceipt" Multiplicity="1" />
+          <End Type="CMART7Model.BranchOfficeReceipt" Role="BranchOfficeReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadquaterReceipt">
+              <PropertyRef Name="HeadquaterID" />
+            </Principal>
+            <Dependent Role="BranchOfficeReceipt">
+              <PropertyRef Name="HeadquaterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchOfficeReceiptDetail_BranchOfficeReceipt">
+          <End Type="CMART7Model.BranchOfficeReceipt" Role="BranchOfficeReceipt" Multiplicity="1" />
+          <End Type="CMART7Model.BranchOfficeReceiptDetail" Role="BranchOfficeReceiptDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BranchOfficeReceipt">
+              <PropertyRef Name="BranchOfficeID" />
+            </Principal>
+            <Dependent Role="BranchOfficeReceiptDetail">
+              <PropertyRef Name="BranchOfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchOfficeReceiptDetail_Product">
+          <End Type="CMART7Model.Product" Role="Product" Multiplicity="1" />
+          <End Type="CMART7Model.BranchOfficeReceiptDetail" Role="BranchOfficeReceiptDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="BranchOfficeReceiptDetail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SanPham_LoaiSanPham">
+          <End Type="CMART7Model.Category" Role="Category" Multiplicity="1" />
+          <End Type="CMART7Model.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietPhieuNhapHangTruSo_PhieuNhapHangTruSo">
+          <End Type="CMART7Model.HeadquaterReceipt" Role="HeadquaterReceipt" Multiplicity="1" />
+          <End Type="CMART7Model.HeadquaterReceiptDetail" Role="HeadquaterReceiptDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadquaterReceipt">
+              <PropertyRef Name="HeadquaterID" />
+            </Principal>
+            <Dependent Role="HeadquaterReceiptDetail">
+              <PropertyRef Name="HeadquaterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuNhapHangTruSo_PhieuDeXuatNhapHang">
+          <End Type="CMART7Model.ProposeReceipt" Role="ProposeReceipt" Multiplicity="1" />
+          <End Type="CMART7Model.HeadquaterReceipt" Role="HeadquaterReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProposeReceipt">
+              <PropertyRef Name="ProposeID" />
+            </Principal>
+            <Dependent Role="HeadquaterReceipt">
+              <PropertyRef Name="ProposeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gia_SanPham">
+          <End Type="CMART7Model.Product" Role="Product" Multiplicity="1" />
+          <End Type="CMART7Model.Price" Role="Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietPhieuDeXuatNhapHang_SanPham">
+          <End Type="CMART7Model.Product" Role="Product" Multiplicity="1" />
+          <End Type="CMART7Model.ProposeReceiptDetail" Role="ProposeReceiptDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProposeReceiptDetail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotion_Product">
+          <End Type="CMART7Model.Product" Role="Product" Multiplicity="1" />
+          <End Type="CMART7Model.Promotion" Role="Promotion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Promotion">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SanPham_NhaCungCap">
+          <End Type="CMART7Model.Supplier" Role="Supplier" Multiplicity="1" />
+          <End Type="CMART7Model.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietPhieuDeXuatNhapHang_PhieuDeXuatNhapHang">
+          <End Type="CMART7Model.ProposeReceipt" Role="ProposeReceipt" Multiplicity="1" />
+          <End Type="CMART7Model.ProposeReceiptDetail" Role="ProposeReceiptDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProposeReceipt">
+              <PropertyRef Name="ProposeID" />
+            </Principal>
+            <Dependent Role="ProposeReceiptDetail">
+              <PropertyRef Name="ProposeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeXuatNhapHang_NhaCungCap">
+          <End Type="CMART7Model.Supplier" Role="Supplier" Multiplicity="1" />
+          <End Type="CMART7Model.ProposeReceipt" Role="ProposeReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="ProposeReceipt">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CMART7ModelStoreContainer" CdmEntityContainer="CMART0Entities">
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="CMART7Model.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="CMND" ColumnName="CMND" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Authorities">
-            <EntityTypeMapping TypeName="CMART7Model.Authority">
-              <MappingFragment StoreEntitySet="Authority">
-                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
-                <ScalarProperty Name="NameOfAuthority" ColumnName="NameOfAuthority" />
-                <ScalarProperty Name="Create" ColumnName="Create" />
-                <ScalarProperty Name="Update" ColumnName="Update" />
-                <ScalarProperty Name="Delete" ColumnName="Delete" />
-                <ScalarProperty Name="View" ColumnName="View" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AuthorityNames">
-            <EntityTypeMapping TypeName="CMART7Model.AuthorityName">
-              <MappingFragment StoreEntitySet="AuthorityName">
-                <ScalarProperty Name="NameOfAuthority" ColumnName="NameOfAuthority" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Bills">
-            <EntityTypeMapping TypeName="CMART7Model.Bill">
-              <MappingFragment StoreEntitySet="Bill">
-                <ScalarProperty Name="BillID" ColumnName="BillID" />
-                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
-                <ScalarProperty Name="POS" ColumnName="POS" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
-                <ScalarProperty Name="InputMoney" ColumnName="InputMoney" />
-                <ScalarProperty Name="OutputMoney" ColumnName="OutputMoney" />
-                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BillDetails">
-            <EntityTypeMapping TypeName="CMART7Model.BillDetail">
-              <MappingFragment StoreEntitySet="BillDetail">
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="BillID" ColumnName="BillID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BranchOfficeReceipts">
-            <EntityTypeMapping TypeName="CMART7Model.BranchOfficeReceipt">
-              <MappingFragment StoreEntitySet="BranchOfficeReceipt">
-                <ScalarProperty Name="BranchOfficeID" ColumnName="BranchOfficeID" />
-                <ScalarProperty Name="HeadquaterID" ColumnName="HeadquaterID" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Branch" ColumnName="Branch" />
-                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BranchOfficeReceiptDetails">
-            <EntityTypeMapping TypeName="CMART7Model.BranchOfficeReceiptDetail">
-              <MappingFragment StoreEntitySet="BranchOfficeReceiptDetail">
-                <ScalarProperty Name="BranchOfficeID" ColumnName="BranchOfficeID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="CMART7Model.Category">
-              <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HeadquaterReceipts">
-            <EntityTypeMapping TypeName="CMART7Model.HeadquaterReceipt">
-              <MappingFragment StoreEntitySet="HeadquaterReceipt">
-                <ScalarProperty Name="HeadquaterID" ColumnName="HeadquaterID" />
-                <ScalarProperty Name="ProposeID" ColumnName="ProposeID" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HeadquaterReceiptDetails">
-            <EntityTypeMapping TypeName="CMART7Model.HeadquaterReceiptDetail">
-              <MappingFragment StoreEntitySet="HeadquaterReceiptDetail">
-                <ScalarProperty Name="HeadquaterID" ColumnName="HeadquaterID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Prices">
-            <EntityTypeMapping TypeName="CMART7Model.Price">
-              <MappingFragment StoreEntitySet="Price">
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="Price1" ColumnName="Price" />
-                <ScalarProperty Name="EffectiveDay" ColumnName="EffectiveDay" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="CMART7Model.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Promotions">
-            <EntityTypeMapping TypeName="CMART7Model.Promotion">
-              <MappingFragment StoreEntitySet="Promotion">
-                <ScalarProperty Name="PromotionID" ColumnName="PromotionID" />
-                <ScalarProperty Name="PromotionPrice" ColumnName="PromotionPrice" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProposeReceipts">
-            <EntityTypeMapping TypeName="CMART7Model.ProposeReceipt">
-              <MappingFragment StoreEntitySet="ProposeReceipt">
-                <ScalarProperty Name="ProposeID" ColumnName="ProposeID" />
-                <ScalarProperty Name="ProposeDate" ColumnName="ProposeDate" />
-                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProposeReceiptDetails">
-            <EntityTypeMapping TypeName="CMART7Model.ProposeReceiptDetail">
-              <MappingFragment StoreEntitySet="ProposeReceiptDetail">
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="ProposeID" ColumnName="ProposeID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Suppliers">
-            <EntityTypeMapping TypeName="CMART7Model.Supplier">
-              <MappingFragment StoreEntitySet="Supplier">
-                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="CMART7Model.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="Headquarter_SelectProduct" FunctionName="CMART7Model.Store.Headquarter_SelectProduct" />
           <FunctionImportMapping FunctionImportName="PROMOTION_ID_AUTO" FunctionName="CMART7Model.Store.PROMOTION_ID_AUTO" />
           <FunctionImportMapping FunctionImportName="PROMOTION_SEARCH" FunctionName="CMART7Model.Store.PROMOTION_SEARCH">
@@ -3016,7 +2844,190 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_SupplierUpdate" FunctionName="CMART7Model.Store.usp_SupplierUpdate" />
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="CMART7Model.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CMND" ColumnName="CMND" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Authorities">
+            <EntityTypeMapping TypeName="CMART7Model.Authority">
+              <MappingFragment StoreEntitySet="Authority">
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+                <ScalarProperty Name="Update" ColumnName="Update" />
+                <ScalarProperty Name="Create" ColumnName="Create" />
+                <ScalarProperty Name="NameOfAuthority" ColumnName="NameOfAuthority" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuthorityNames">
+            <EntityTypeMapping TypeName="CMART7Model.AuthorityName">
+              <MappingFragment StoreEntitySet="AuthorityName">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="NameOfAuthority" ColumnName="NameOfAuthority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="CMART7Model.Bill">
+              <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="OutputMoney" ColumnName="OutputMoney" />
+                <ScalarProperty Name="InputMoney" ColumnName="InputMoney" />
+                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="POS" ColumnName="POS" />
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="BillID" ColumnName="BillID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillDetails">
+            <EntityTypeMapping TypeName="CMART7Model.BillDetail">
+              <MappingFragment StoreEntitySet="BillDetail">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="BillID" ColumnName="BillID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BranchOfficeReceipts">
+            <EntityTypeMapping TypeName="CMART7Model.BranchOfficeReceipt">
+              <MappingFragment StoreEntitySet="BranchOfficeReceipt">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="HeadquaterID" ColumnName="HeadquaterID" />
+                <ScalarProperty Name="BranchOfficeID" ColumnName="BranchOfficeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BranchOfficeReceiptDetails">
+            <EntityTypeMapping TypeName="CMART7Model.BranchOfficeReceiptDetail">
+              <MappingFragment StoreEntitySet="BranchOfficeReceiptDetail">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="BranchOfficeID" ColumnName="BranchOfficeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="CMART7Model.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HeadquaterReceipts">
+            <EntityTypeMapping TypeName="CMART7Model.HeadquaterReceipt">
+              <MappingFragment StoreEntitySet="HeadquaterReceipt">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ProposeID" ColumnName="ProposeID" />
+                <ScalarProperty Name="HeadquaterID" ColumnName="HeadquaterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HeadquaterReceiptDetails">
+            <EntityTypeMapping TypeName="CMART7Model.HeadquaterReceiptDetail">
+              <MappingFragment StoreEntitySet="HeadquaterReceiptDetail">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="HeadquaterID" ColumnName="HeadquaterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prices">
+            <EntityTypeMapping TypeName="CMART7Model.Price">
+              <MappingFragment StoreEntitySet="Price">
+                <ScalarProperty Name="EffectiveDay" ColumnName="EffectiveDay" />
+                <ScalarProperty Name="Price1" ColumnName="Price" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="CMART7Model.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promotions">
+            <EntityTypeMapping TypeName="CMART7Model.Promotion">
+              <MappingFragment StoreEntitySet="Promotion">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="PromotionPrice" ColumnName="PromotionPrice" />
+                <ScalarProperty Name="PromotionID" ColumnName="PromotionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProposeReceipts">
+            <EntityTypeMapping TypeName="CMART7Model.ProposeReceipt">
+              <MappingFragment StoreEntitySet="ProposeReceipt">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="ProposeDate" ColumnName="ProposeDate" />
+                <ScalarProperty Name="ProposeID" ColumnName="ProposeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProposeReceiptDetails">
+            <EntityTypeMapping TypeName="CMART7Model.ProposeReceiptDetail">
+              <MappingFragment StoreEntitySet="ProposeReceiptDetail">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProposeID" ColumnName="ProposeID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="CMART7Model.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CMART7Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

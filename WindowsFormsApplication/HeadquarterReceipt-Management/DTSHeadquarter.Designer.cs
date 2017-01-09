@@ -293,8 +293,6 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management {
             
             private global::System.Data.DataColumn columnQuantity;
             
-            private global::System.Data.DataColumn columnExpiryDate;
-            
             private global::System.Data.DataColumn columnPrice;
             
             private global::System.Data.DataColumn columnStatus;
@@ -390,14 +388,6 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ExpiryDateColumn {
-                get {
-                    return this.columnExpiryDate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn PriceColumn {
                 get {
                     return this.columnPrice;
@@ -449,7 +439,7 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SP_PRINT_HeadquarterRow AddSP_PRINT_HeadquarterRow(string HeadquaterID, string ProposeID, System.DateTime Date, double TotalAmount, string AccountID, string ProductID, int Quantity, System.DateTime ExpiryDate, double Price, string Status) {
+            public SP_PRINT_HeadquarterRow AddSP_PRINT_HeadquarterRow(string HeadquaterID, string ProposeID, System.DateTime Date, double TotalAmount, string AccountID, string ProductID, int Quantity, double Price, string Status) {
                 SP_PRINT_HeadquarterRow rowSP_PRINT_HeadquarterRow = ((SP_PRINT_HeadquarterRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         HeadquaterID,
@@ -459,7 +449,6 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management {
                         AccountID,
                         ProductID,
                         Quantity,
-                        ExpiryDate,
                         Price,
                         Status};
                 rowSP_PRINT_HeadquarterRow.ItemArray = columnValuesArray;
@@ -491,7 +480,6 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management {
                 this.columnAccountID = base.Columns["AccountID"];
                 this.columnProductID = base.Columns["ProductID"];
                 this.columnQuantity = base.Columns["Quantity"];
-                this.columnExpiryDate = base.Columns["ExpiryDate"];
                 this.columnPrice = base.Columns["Price"];
                 this.columnStatus = base.Columns["Status"];
             }
@@ -513,8 +501,6 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management {
                 base.Columns.Add(this.columnProductID);
                 this.columnQuantity = new global::System.Data.DataColumn("Quantity", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnQuantity);
-                this.columnExpiryDate = new global::System.Data.DataColumn("ExpiryDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnExpiryDate);
                 this.columnPrice = new global::System.Data.DataColumn("Price", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPrice);
                 this.columnStatus = new global::System.Data.DataColumn("Status", typeof(string), null, global::System.Data.MappingType.Element);
@@ -752,22 +738,6 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime ExpiryDate {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableSP_PRINT_Headquarter.ExpiryDateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ExpiryDate\' in table \'SP_PRINT_Headquarter\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSP_PRINT_Headquarter.ExpiryDateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public double Price {
                 get {
                     return ((double)(this[this.tableSP_PRINT_Headquarter.PriceColumn]));
@@ -786,18 +756,6 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management {
                 set {
                     this[this.tableSP_PRINT_Headquarter.StatusColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsExpiryDateNull() {
-                return this.IsNull(this.tableSP_PRINT_Headquarter.ExpiryDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetExpiryDateNull() {
-                this[this.tableSP_PRINT_Headquarter.ExpiryDateColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -967,7 +925,6 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management.DTSHeadquarterTa
             tableMapping.ColumnMappings.Add("AccountID", "AccountID");
             tableMapping.ColumnMappings.Add("ProductID", "ProductID");
             tableMapping.ColumnMappings.Add("Quantity", "Quantity");
-            tableMapping.ColumnMappings.Add("ExpiryDate", "ExpiryDate");
             tableMapping.ColumnMappings.Add("Price", "Price");
             tableMapping.ColumnMappings.Add("Status", "Status");
             this._adapter.TableMappings.Add(tableMapping);

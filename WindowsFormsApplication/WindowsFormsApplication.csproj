@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WindowsFormsApplication</RootNamespace>
     <AssemblyName>WindowsFormsApplication</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -77,12 +77,21 @@
     <Compile Include="Account-Management\GUI_Authority.Designer.cs">
       <DependentUpon>GUI_Authority.cs</DependentUpon>
     </Compile>
+    <Compile Include="Account.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Authority.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AuthorityName.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Bill-Management\BUS_InsertBill.cs" />
     <Compile Include="Bill-Management\BUS_ManageBill.cs" />
-    <Compile Include="Bill-Management\DataSetBill.Designer.cs">
+    <Compile Include="Bill-Management\DTSInvoice.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetBill.xsd</DependentUpon>
+      <DependentUpon>DTSInvoice.xsd</DependentUpon>
     </Compile>
     <Compile Include="Bill-Management\GUI_InsertBill.cs">
       <SubType>Form</SubType>
@@ -103,7 +112,18 @@
       <DependentUpon>GUI_Review.cs</DependentUpon>
     </Compile>
     <Compile Include="Bill-Management\ValidationBill.cs" />
+    <Compile Include="Bill.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BranchOfficeReceipt-Management\BUS_BRANCHOFFICERECEIPT.cs" />
+    <Compile Include="BranchOfficeReceipt-Management\DTSBranchOffice.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DTSBranchOffice.xsd</DependentUpon>
+    </Compile>
     <Compile Include="BranchOfficeReceipt-Management\GUI_BRANCHOFFICERECEIPT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +136,18 @@
     <Compile Include="BranchOfficeReceipt-Management\GUI_BRANCHOFFICERECEIPTDETAIL.designer.cs">
       <DependentUpon>GUI_BRANCHOFFICERECEIPTDETAIL.cs</DependentUpon>
     </Compile>
+    <Compile Include="BranchOfficeReceipt-Management\GUI_PrintBranch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BranchOfficeReceipt-Management\GUI_PrintBranch.Designer.cs">
+      <DependentUpon>GUI_PrintBranch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BranchOfficeReceipt.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BranchOfficeReceiptDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Category-Management\BUS_Category.cs" />
     <Compile Include="Category-Management\GUI_Category.cs">
       <SubType>Form</SubType>
@@ -123,16 +155,37 @@
     <Compile Include="Category-Management\GUI_Category.Designer.cs">
       <DependentUpon>GUI_Category.cs</DependentUpon>
     </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReportBranchOffice.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportBranchOffice.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrystalReportHeadquarter.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CrystalReportHeadquarter.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReportInvoice.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportInvoice.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrystalReportProposed.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CrystalReportProposed.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReportStatistic.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportStatistic.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form0.cs">
@@ -178,15 +231,26 @@
     <Compile Include="HeadquarterReceipt-Management\GUI_PrintHeadquarter.Designer.cs">
       <DependentUpon>GUI_PrintHeadquarter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model.Designer.cs">
+    <Compile Include="HeadquaterReceipt.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HeadquaterReceiptDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Price-Management\BUS_PRICE.cs" />
     <Compile Include="Price-Management\GUI_PRICE.cs">
@@ -194,6 +258,21 @@
     </Compile>
     <Compile Include="Price-Management\GUI_PRICE.Designer.cs">
       <DependentUpon>GUI_PRICE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Price.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Promotion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROMOTION_SEARCH_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROMOTION_SELECT_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ProposeReceipt-Management\DTSProposed.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -242,12 +321,160 @@
     <Compile Include="ProposeReceipt-Management\GUI_ProposedDetail.Designer.cs">
       <DependentUpon>GUI_ProposedDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProposeReceipt.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProposeReceiptDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_BranchOfficeSearch_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_INVOICE_PRINT_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_LOAD_BRANCHRECEIPTDETAIL_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_PRINT_BRANCHRECEIPTDETAIL_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_PRINT_Headquarter_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_PRINT_Proposed_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SEARCH_PRODUCT_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SELECTALL_PRODUCT_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SUMREPORT_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_THONGKEDOANHTHU_KTG_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_THONGKEDOANHTHU_KTG_TOP10_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_THONGKEDOANHTHU_KTG_TOP20_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_THONGKEDOANHTHU_KTG_TOP5_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_THONGKEDOANHTHU_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_THONGKEDOANHTHU_TOP10_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_THONGKEDOANHTHU_TOP20_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_THONGKEDOANHTHU_TOP5_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Statistic-Management\BUS_Statistic.cs" />
+    <Compile Include="Statistic-Management\DTSStatistic.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DTSStatistic.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Statistic-Management\GUI_ManageStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Statistic-Management\GUI_ManageStatistic.Designer.cs">
+      <DependentUpon>GUI_ManageStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Statistic-Management\GUI_ReviewsStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Statistic-Management\GUI_ReviewsStatistic.Designer.cs">
+      <DependentUpon>GUI_ReviewsStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Statistic-Management\Validate_Statistic.cs" />
     <Compile Include="Supplier-Management\BUS_Supplier.cs" />
     <Compile Include="Supplier-Management\GUI_Supplier.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Supplier-Management\GUI_Supplier.Designer.cs">
       <DependentUpon>GUI_Supplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_AccountSearch_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Bill_Insert_returnid_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Bill_Search_BillId_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Bill_Search_FullName_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Bill_Search_Inputmoney_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Bill_Search_POS_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Bill_Search_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Bill_Search_SaleDate_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Bill_Search_TotalAmount_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Bill_Search_TotalQuantity_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Bill_SelectAll_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_BranchOfficeDetailSearch_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_BranchOfficeSearch_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CategorySearch_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_HeadquarterReceiptDetailSearch_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_HEADQUATERRECEIPTSearch_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_PriceSearch_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ProposedDetailSearch_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ProposedSearch_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_SupplierSearch_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ValidationExtensition.cs" />
     <EmbeddedResource Include="Account-Management\GUI_Account.resx">
@@ -271,16 +498,31 @@
     <EmbeddedResource Include="BranchOfficeReceipt-Management\GUI_BRANCHOFFICERECEIPTDETAIL.resx">
       <DependentUpon>GUI_BRANCHOFFICERECEIPTDETAIL.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BranchOfficeReceipt-Management\GUI_PrintBranch.resx">
+      <DependentUpon>GUI_PrintBranch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Category-Management\GUI_Category.resx">
       <DependentUpon>GUI_Category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReportBranchOffice.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportBranchOffice.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReportHeadquarter.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReportHeadquarter.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReportInvoice.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportInvoice.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReportProposed.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReportProposed.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReportStatistic.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportStatistic.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Form0.resx">
       <DependentUpon>Form0.cs</DependentUpon>
@@ -323,24 +565,41 @@
     <EmbeddedResource Include="ProposeReceipt-Management\GUI_ProposedDetail.resx">
       <DependentUpon>GUI_ProposedDetail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Statistic-Management\GUI_ManageStatistic.resx">
+      <DependentUpon>GUI_ManageStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Statistic-Management\GUI_ReviewsStatistic.resx">
+      <DependentUpon>GUI_ReviewsStatistic.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Supplier-Management\GUI_Supplier.resx">
       <DependentUpon>GUI_Supplier.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="App.Config" />
-    <None Include="Bill-Management\DataSetBill.xsc">
-      <DependentUpon>DataSetBill.xsd</DependentUpon>
+    <None Include="Bill-Management\DTSInvoice.xsc">
+      <DependentUpon>DTSInvoice.xsd</DependentUpon>
     </None>
-    <None Include="Bill-Management\DataSetBill.xsd">
+    <None Include="Bill-Management\DTSInvoice.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetBill.Designer.cs</LastGenOutput>
+      <LastGenOutput>DTSInvoice.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Bill-Management\DataSetBill.xss">
-      <DependentUpon>DataSetBill.xsd</DependentUpon>
+    <None Include="Bill-Management\DTSInvoice.xss">
+      <DependentUpon>DTSInvoice.xsd</DependentUpon>
+    </None>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BranchOfficeReceipt-Management\DTSBranchOffice.xsc">
+      <DependentUpon>DTSBranchOffice.xsd</DependentUpon>
+    </None>
+    <None Include="BranchOfficeReceipt-Management\DTSBranchOffice.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DTSBranchOffice.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="BranchOfficeReceipt-Management\DTSBranchOffice.xss">
+      <DependentUpon>DTSBranchOffice.xsd</DependentUpon>
     </None>
     <None Include="HeadquarterReceipt-Management\DTSHeadquarter.xsc">
       <DependentUpon>DTSHeadquarter.xsd</DependentUpon>
@@ -353,8 +612,17 @@
     <None Include="HeadquarterReceipt-Management\DTSHeadquarter.xss">
       <DependentUpon>DTSHeadquarter.xsd</DependentUpon>
     </None>
-    <None Include="Model.tt">
+    <None Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
@@ -367,12 +635,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ProposeReceipt-Management\DTSProposed.xsc">
       <DependentUpon>DTSProposed.xsd</DependentUpon>
     </None>
@@ -384,6 +646,23 @@
     <None Include="ProposeReceipt-Management\DTSProposed.xss">
       <DependentUpon>DTSProposed.xsd</DependentUpon>
     </None>
+    <None Include="Statistic-Management\DTSStatistic.xsc">
+      <DependentUpon>DTSStatistic.xsd</DependentUpon>
+    </None>
+    <None Include="Statistic-Management\DTSStatistic.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DTSStatistic.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Statistic-Management\DTSStatistic.xss">
+      <DependentUpon>DTSStatistic.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\money.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -419,7 +698,18 @@
   <ItemGroup>
     <None Include="Resources\8.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\72109.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\account.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minicons2-61-512.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

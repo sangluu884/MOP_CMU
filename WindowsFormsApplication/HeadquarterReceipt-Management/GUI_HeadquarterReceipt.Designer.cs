@@ -228,6 +228,7 @@
             this.lstHeadquarterRs.Name = "lstHeadquarterRs";
             this.lstHeadquarterRs.Size = new System.Drawing.Size(530, 215);
             this.lstHeadquarterRs.TabIndex = 0;
+            this.lstHeadquarterRs.Click += new System.EventHandler(this.lstHeadquarterRs_Click);
             this.lstHeadquarterRs.DoubleClick += new System.EventHandler(this.lstHeadquarterRs_DoubleClick);
             // 
             // txtSearch
@@ -253,6 +254,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "GUI_HeadquarterReceipt";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GUI_HeadquarterReceipt";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

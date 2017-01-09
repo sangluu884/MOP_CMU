@@ -29,7 +29,6 @@
               <Mapping SourceColumn="AccountID" DataSetColumn="AccountID" />
               <Mapping SourceColumn="ProductID" DataSetColumn="ProductID" />
               <Mapping SourceColumn="Quantity" DataSetColumn="Quantity" />
-              <Mapping SourceColumn="ExpiryDate" DataSetColumn="ExpiryDate" />
               <Mapping SourceColumn="Price" DataSetColumn="Price" />
               <Mapping SourceColumn="Status" DataSetColumn="Status" />
             </Mappings>
@@ -77,7 +76,6 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="Quantity" msprop:Generator_ColumnVarNameInTable="columnQuantity" msprop:Generator_ColumnPropNameInRow="Quantity" msprop:Generator_ColumnPropNameInTable="QuantityColumn" msprop:Generator_UserColumnName="Quantity" type="xs:int" />
-              <xs:element name="ExpiryDate" msprop:Generator_ColumnVarNameInTable="columnExpiryDate" msprop:Generator_ColumnPropNameInRow="ExpiryDate" msprop:Generator_ColumnPropNameInTable="ExpiryDateColumn" msprop:Generator_UserColumnName="ExpiryDate" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:double" />
               <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status">
                 <xs:simpleType>

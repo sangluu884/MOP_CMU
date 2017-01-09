@@ -29,7 +29,7 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management
             bool flag = false;
             try
             {
-                db.SP_INSERT_HEADQUATER(proposedID,totalAmount, accountID);
+                db.SP_INSERT_HEADQUATER(proposedID, totalAmount, accountID);
                 db.SaveChanges();
                 flag = true;
             }
@@ -64,7 +64,7 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management
             HeadquaterReceipt headquarter = db.HeadquaterReceipts.Single(x => x.HeadquaterID == headquarterID);
             try
             {
-                db.DeleteObject(headquarter);
+                db.HeadquaterReceipts.Remove(headquarter);
                 //db.usp_Account_Delete(accountID);
                 db.SaveChanges();
                 flag = true;

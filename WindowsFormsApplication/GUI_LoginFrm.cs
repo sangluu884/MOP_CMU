@@ -18,6 +18,7 @@ namespace WindowsFormsApplication
             InitializeComponent();
             lblAUsername.Visible = false;
             lblAPassword.Visible = false;
+           
         }
 
         public bool Required(TextBox txt)

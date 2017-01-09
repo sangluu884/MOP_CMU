@@ -17,6 +17,7 @@ namespace WindowsFormsApplication
         public string PromotionID { get; set; }
         public double PromotionPrice { get; set; }
         public System.DateTime StartDate { get; set; }
+        public System.DateTime EndDate { get; set; }
         public string Content { get; set; }
         public string Image { get; set; }
         public string ProductID { get; set; }

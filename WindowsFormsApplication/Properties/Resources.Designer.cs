@@ -63,6 +63,26 @@ namespace WindowsFormsApplication.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _21 {
+            get {
+                object obj = ResourceManager.GetObject("21", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _72109 {
+            get {
+                object obj = ResourceManager.GetObject("72109", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _8 {
             get {
                 object obj = ResourceManager.GetObject("8", resourceCulture);
@@ -76,6 +96,16 @@ namespace WindowsFormsApplication.Properties {
         internal static System.Drawing.Bitmap acc {
             get {
                 object obj = ResourceManager.GetObject("acc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap account {
+            get {
+                object obj = ResourceManager.GetObject("account", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,6 +146,16 @@ namespace WindowsFormsApplication.Properties {
         internal static System.Drawing.Bitmap invoice {
             get {
                 object obj = ResourceManager.GetObject("invoice", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap minicons2_61_512 {
+            get {
+                object obj = ResourceManager.GetObject("minicons2-61-512", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -164,7 +164,7 @@
             // btnPrice
             // 
             this.btnPrice.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPrice.BackgroundImage = global::WindowsFormsApplication.Properties.Resources.money;
+            this.btnPrice.BackgroundImage = global::WindowsFormsApplication.Properties.Resources._21;
             this.btnPrice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPrice.Location = new System.Drawing.Point(341, 28);
             this.btnPrice.Name = "btnPrice";
@@ -176,7 +176,7 @@
             // btnSupplier
             // 
             this.btnSupplier.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSupplier.BackgroundImage = global::WindowsFormsApplication.Properties.Resources.supp2;
+            this.btnSupplier.BackgroundImage = global::WindowsFormsApplication.Properties.Resources._72109;
             this.btnSupplier.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSupplier.Location = new System.Drawing.Point(458, 28);
             this.btnSupplier.Name = "btnSupplier";
@@ -332,8 +332,8 @@
             // 
             // btnManageAccount
             // 
-            this.btnManageAccount.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnManageAccount.BackgroundImage = global::WindowsFormsApplication.Properties.Resources.acc;
+            this.btnManageAccount.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnManageAccount.BackgroundImage = global::WindowsFormsApplication.Properties.Resources.account;
             this.btnManageAccount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnManageAccount.Location = new System.Drawing.Point(144, 28);
             this.btnManageAccount.Name = "btnManageAccount";
@@ -344,13 +344,14 @@
             // btnStatistic
             // 
             this.btnStatistic.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnStatistic.BackgroundImage = global::WindowsFormsApplication.Properties.Resources.sta;
+            this.btnStatistic.BackgroundImage = global::WindowsFormsApplication.Properties.Resources.minicons2_61_512;
             this.btnStatistic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnStatistic.Location = new System.Drawing.Point(258, 28);
             this.btnStatistic.Name = "btnStatistic";
             this.btnStatistic.Size = new System.Drawing.Size(83, 80);
             this.btnStatistic.TabIndex = 14;
             this.btnStatistic.UseVisualStyleBackColor = false;
+            this.btnStatistic.Click += new System.EventHandler(this.btnStatistic_Click);
             // 
             // lblLogout
             // 
@@ -378,6 +379,7 @@
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GUI_MainFrm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GUI_MainFrm";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

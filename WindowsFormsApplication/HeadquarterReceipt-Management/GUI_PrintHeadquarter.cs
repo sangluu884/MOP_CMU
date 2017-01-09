@@ -25,8 +25,7 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management
         private void LoadPrint()
         {
             BindingSource bs = new BindingSource();
-            //bs.DataSource = Bus_Detail.printHeadquarterDetail(id);
-            bs.DataSource = ToDataSet<SP_PRINT_Headquarter_Result>(Bus_Detail.printHeadquarterDetail(id));
+            bs.DataSource = Bus_Detail.printHeadquarterDetail(id);
             CrystalReportHeadquarter rp = new CrystalReportHeadquarter();
             rp.SetDataSource(bs);
             //Test

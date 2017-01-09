@@ -13,6 +13,7 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management
     {
         CMART0Entities db = new CMART0Entities();
         BUS_HeadquarterReceipt Bus_Headquarter = new BUS_HeadquarterReceipt();
+        Authority authority = new Authority();
         string getAccount;
 
         public GUI_HeadquarterReceipt(string re)
@@ -65,40 +66,50 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            string headID = txtHeadID.Text;
-            string proposedID = (string)cboProposed.SelectedValue;
-            double totalAmountOfMoney = double.Parse(txtTotalAmount.Text);
-            string accountID = txtAccountID.Text;
-
-            bool flag = Bus_Headquarter.InsertHeadquarter(proposedID, totalAmountOfMoney, accountID);
-            if (flag == true)
+            bool create = db.Authorities.Single(x => x.AccountID == getAccount && x.NameOfAuthority == "Manage Headquarters Receipts").Create;
+            if (create == true)
             {
-                MessageBox.Show("Create Headquarter Receipt successfully!");
-                LoadHeadquarter();
-                Clean();
-            }
-            else MessageBox.Show("Create Headquarter Receipt unsuccessfully!");
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            string headID = txtHeadID.Text;
-            var check = Find(headID);
-            if (check != null)
-            {
+                string headID = txtHeadID.Text;
                 string proposedID = (string)cboProposed.SelectedValue;
                 double totalAmountOfMoney = double.Parse(txtTotalAmount.Text);
                 string accountID = txtAccountID.Text;
 
-                bool flag = Bus_Headquarter.UpdateAccount(headID, proposedID, totalAmountOfMoney, accountID);
+                bool flag = Bus_Headquarter.InsertHeadquarter(proposedID, totalAmountOfMoney, accountID);
                 if (flag == true)
                 {
-                    MessageBox.Show("Update Headquarter Receipt successfully!");
+                    MessageBox.Show("Create Headquarter Receipt successfully!");
                     LoadHeadquarter();
+                    Clean();
                 }
-                else MessageBox.Show("Update Headquarter Receipt unsuccessfully!");
+                else MessageBox.Show("Create Headquarter Receipt unsuccessfully!");
             }
-            else MessageBox.Show("Please choose a Headquarter Receipt!");
+            else MessageBox.Show("Your account do not have the authority to create Headquarter Receipt!");
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            bool update = db.Authorities.Single(x => x.AccountID == getAccount && x.NameOfAuthority == "Manage Headquarters Receipts").Update;
+            if (update == true)
+            {
+                string headID = txtHeadID.Text;
+                var check = Find(headID);
+                if (check != null)
+                {
+                    string proposedID = (string)cboProposed.SelectedValue;
+                    double totalAmountOfMoney = double.Parse(txtTotalAmount.Text);
+                    string accountID = txtAccountID.Text;
+
+                    bool flag = Bus_Headquarter.UpdateAccount(headID, proposedID, totalAmountOfMoney, accountID);
+                    if (flag == true)
+                    {
+                        MessageBox.Show("Update Headquarter Receipt successfully!");
+                        LoadHeadquarter();
+                    }
+                    else MessageBox.Show("Update Headquarter Receipt unsuccessfully!");
+                }
+                else MessageBox.Show("Please choose a Headquarter Receipt!");
+            }
+            else MessageBox.Show("Your account do not have the authority to update Headquarter Receipt!");
         }
 
         public HeadquaterReceipt Find(string headquarterID)
@@ -142,8 +153,26 @@ namespace WindowsFormsApplication.HeadquarterReceipt_Management
 
         private void btnDetail_Click(object sender, EventArgs e)
         {
-            GUI_HeadquarterReceiptDetail detail = new GUI_HeadquarterReceiptDetail();
+            GUI_HeadquarterReceiptDetail detail = new GUI_HeadquarterReceiptDetail(getAccount);
             detail.ShowDialog();
+        }
+
+        private void lstHeadquarterRs_Click(object sender, EventArgs e)
+        {
+            HeadquaterReceipt headquarter = new HeadquaterReceipt();
+            CMART0Entities db = new CMART0Entities();
+
+            if (lstHeadquarterRs.SelectedRows.Count == 1)
+            {
+                var row = lstHeadquarterRs.SelectedRows[0];
+                var cell = row.Cells["HeadquaterID"];
+                string headquarterID = (string)cell.Value;
+                headquarter = db.HeadquaterReceipts.Single(x => x.HeadquaterID == headquarterID);
+                txtHeadID.Text = headquarter.HeadquaterID;
+                cboProposed.Text = headquarter.ProposeID;
+                txtTotalAmount.Text = headquarter.TotalAmount.ToString();
+                //txtAccountID.Text = headquarter.AccountID;
+            }
         }
     }
 }

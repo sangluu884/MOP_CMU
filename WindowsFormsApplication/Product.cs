@@ -34,7 +34,7 @@ namespace WindowsFormsApplication
         public virtual Category Category { get; set; }
         public virtual ICollection<Price> Prices { get; set; }
         public virtual ICollection<ProposeReceiptDetail> ProposeReceiptDetails { get; set; }
-        public virtual Supplier Supplier { get; set; }
         public virtual ICollection<Promotion> Promotions { get; set; }
+        public virtual Supplier Supplier { get; set; }
     }
 }

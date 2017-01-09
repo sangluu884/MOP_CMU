@@ -17,6 +17,6 @@ namespace WindowsFormsApplication
         public int Quantity { get; set; }
         public double Price { get; set; }
         public System.DateTime SaleDate { get; set; }
-        public double TOTAL { get; set; }
+        public Nullable<double> TOTAL { get; set; }
     }
 }
